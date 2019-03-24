@@ -1,0 +1,20 @@
+{
+  "name": "cryfs-web-next",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "npm run build && next start",
+    "export": "npm run build && next export && touch out/.nojekyll"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^8.0.3",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5"
+  }
+}
