@@ -1,8 +1,10 @@
 import Layout from '../components/Layout.js'
 import Head from 'next/head'
 import Link from 'next/link'
-import { Alert, Button } from 'reactstrap';
+import { Alert, Button, Container, Row, Col } from 'reactstrap';
 import { StyleSheet, css } from 'aphrodite/no-important'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleDoubleRight, faLightbulb, faLock, faComments } from '@fortawesome/free-solid-svg-icons'
 
 const title = "CryFS: A cryptographic filesystem for the cloud"
 const description = "CryFS encrypts your Dropbox and protects you against hackers and data leaks. It also works well together with other cloud providers."
@@ -175,9 +177,57 @@ const AlternatingSections = props => {
     }</div>
 }
 
-const BulletsSection = () => (
-    <span>first</span>
-)
+const BulletsSection = () => {
+    const iconStyle = StyleSheet.create({
+        md: {
+            fontSize: '200px',
+        },
+        sm: {
+            fontSize: '150px',
+        },
+    })
+
+    const BulletPoint = props => (
+        <Col md="4">
+            <div className="text-center">
+                <div className="d-none d-lg-block">
+                    <FontAwesomeIcon icon={props.icon} className={css(iconStyle.md)} />
+                </div>
+                <div className="d-block d-lg-none">
+                    <FontAwesomeIcon icon={props.icon} className={css(iconStyle.sm)} />
+                </div>
+                <h2 style={{marginTop: '0px', marginBottom: '20px'}}>{props.title}</h2>
+                {props.children}
+                <p>
+                    <Link href={props.details_link_target}>
+                        <Button outline color="secondary">
+                            {/*TODO Translate*/}
+                            Details &nbsp;
+                            <FontAwesomeIcon icon={faAngleDoubleRight} />
+                        </Button>
+                    </Link>
+                </p>
+            </div>
+        </Col>
+    )
+
+    return <section>
+        <Container>
+            <Row>
+                {/*TODO Translate*/}
+                <BulletPoint title="Simple" icon={faLightbulb} details_link_target="/tutorial">
+                    <p>Easy to setup and works with a lot of cloud storage providers. It runs in the background - you won't notice it when accessing your files in your daily workflow.</p>
+                </BulletPoint>
+                <BulletPoint title="Secure" icon={faLock} details_link_target="/howitworks">
+                    <p>Your data only leaves your computer in encrypted form. File contents, metadata and directory structure are all secure from someone who hacked your cloud.</p>
+                </BulletPoint>
+                <BulletPoint title="Free & Open Source" icon={faComments} details_link_target="http://www.gnu.org/philosophy/free-sw.html">
+                    <p>Released under LGPL and available on <a href="https://github.com/cryfs/cryfs">GitHub</a>. Free to use for everyone. Its security is verifiable and the community can work on improvements.</p>
+                </BulletPoint>
+            </Row>
+        </Container>
+    </section>
+}
 
 const Index = () => (
     <Layout>

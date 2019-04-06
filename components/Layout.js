@@ -3,6 +3,9 @@ import '../assets/styles/bootstrap.scss'
 import * as React from "react";
 import Link from 'next/link'
 import {
+    Container,
+    Row,
+    Col,
     Collapse,
     Navbar,
     NavbarToggler,
@@ -42,7 +45,7 @@ class MyNavBar extends React.Component {
         })
         return <div>
             <Navbar expand="md" color="dark" dark className={css(navbarStyle.navbar)}>
-                <div className="container">
+                <Container>
                     <NavbarToggler onClick={this.toggle} />
                     <NavbarBrand href="/">CryFS</NavbarBrand>
                     <Collapse isOpen={this.state.isOpen} navbar>
@@ -64,7 +67,7 @@ class MyNavBar extends React.Component {
                             </NavItem>
                         </Nav>
                     </Collapse>
-                </div>
+                </Container>
             </Navbar>
         </div>
     }
@@ -103,11 +106,11 @@ const footerStyle = StyleSheet.create({
 
 const Footer = props => (
     <section className={css(footerStyle.section)}>
-        <div className="container">
+        <Container>
             <footer className={css(footerStyle.footer)}>
-                <div className="row">
-                    <div className="col-md-8">Copyright © 2016-present &mdash; Sebastian Messmer</div>
-                    <div className="col-md-2">
+                <Row>
+                    <Col md="8">Copyright © 2016-present &mdash; Sebastian Messmer</Col>
+                    <Col md="2">
                         {/*TODO Change to data-layout="button_count", once we have some likes*/}
                         <div id="fb-like"
                              className="fb-like"
@@ -117,14 +120,16 @@ const Footer = props => (
                              data-action="like"
                              data-show-faces="true"
                              data-share="true" />
-                    </div>
-                    <div className="col-md-2 text-right">
-                        {/*TODO Translate*/}
-                        <Link href={"/legal_notice"}><a>Legal Notice</a></Link>
-                    </div>
-                </div>
+                    </Col>
+                    <Col md="2">
+                        <div className="text-right">
+                            {/*TODO Translate*/}
+                            <Link href={"/legal_notice"}><a>Legal Notice</a></Link>
+                        </div>
+                    </Col>
+                </Row>
             </footer>
-        </div>
+        </Container>
     </section>
 )
 
