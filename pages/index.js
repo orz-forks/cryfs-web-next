@@ -186,9 +186,15 @@ const BulletsSection = () => {
             fontSize: '150px',
         },
     })
+    const titleStyle = StyleSheet.create({
+        title: {
+            marginTop: '20px',
+            marginBottom: '20px',
+        },
+    })
 
     const BulletPoint = props => (
-        <Col md="4">
+        <Col lg="4">
             <div className="text-center">
                 <div className="d-none d-lg-block">
                     <FontAwesomeIcon icon={props.icon} className={css(iconStyle.md)} />
@@ -196,7 +202,7 @@ const BulletsSection = () => {
                 <div className="d-block d-lg-none">
                     <FontAwesomeIcon icon={props.icon} className={css(iconStyle.sm)} />
                 </div>
-                <h2 style={{marginTop: '0px', marginBottom: '20px'}}>{props.title}</h2>
+                <h2 className={css(titleStyle.title)}>{props.title}</h2>
                 {props.children}
                 <p>
                     <Link href={props.details_link_target}>

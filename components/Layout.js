@@ -39,13 +39,16 @@ class MyNavBar extends React.Component {
     render() {
         const navbarStyle = StyleSheet.create({
             navbar: {
-                paddingRight: '140px',
                 fontSize: '1.2rem',
+                width: '100%',
+                paddingRight: '140px',
+                paddingLeft: '15px',
+                display: 'flex',
             },
         })
         return <div>
-            <Navbar expand="md" color="dark" dark className={css(navbarStyle.navbar)}>
-                <Container>
+            <Navbar expand="md" color="dark" dark>
+                <div className={css(navbarStyle.navbar)}>
                     <NavbarToggler onClick={this.toggle} />
                     <NavbarBrand href="/">CryFS</NavbarBrand>
                     <Collapse isOpen={this.state.isOpen} navbar>
@@ -67,7 +70,7 @@ class MyNavBar extends React.Component {
                             </NavItem>
                         </Nav>
                     </Collapse>
-                </Container>
+                </div>
             </Navbar>
         </div>
     }
