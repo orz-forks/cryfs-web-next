@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import AlternatingSections from '../components/AlternatingSections.js'
 import Teaser from '../components/Teaser.js'
-import { Alert, Button, Container, Row, Col } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button, Container, Row, Col } from 'reactstrap';
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleRight, faLightbulb, faLock, faComments } from '@fortawesome/free-solid-svg-icons'
@@ -23,15 +23,10 @@ const OpenGraphTags = () => (
 )
 
 const BulletsSection = () => {
-    const iconStyle = StyleSheet.create({
-        md: {
-            fontSize: '200px',
-        },
-        sm: {
+    const style = StyleSheet.create({
+        icon: {
             fontSize: '150px',
         },
-    })
-    const titleStyle = StyleSheet.create({
         title: {
             marginTop: '20px',
             marginBottom: '20px',
@@ -41,13 +36,8 @@ const BulletsSection = () => {
     const BulletPoint = props => (
         <Col lg="4">
             <div className="text-center">
-                <div className="d-none d-lg-block">
-                    <FontAwesomeIcon icon={props.icon} className={css(iconStyle.md)} />
-                </div>
-                <div className="d-block d-lg-none">
-                    <FontAwesomeIcon icon={props.icon} className={css(iconStyle.sm)} />
-                </div>
-                <h2 className={css(titleStyle.title)}>{props.title}</h2>
+                <FontAwesomeIcon icon={props.icon} className={css(style.icon)} />
+                <h2 className={css(style.title)}>{props.title}</h2>
                 {props.children}
                 <p>
                     <Link href={props.details_link_target}>
@@ -62,8 +52,7 @@ const BulletsSection = () => {
         </Col>
     )
 
-    return <section>
-        <Container>
+    return <Container>
             <Row>
                 {/*TODO Translate*/}
                 <BulletPoint title="Simple" icon={faLightbulb} details_link_target="/tutorial">
@@ -77,7 +66,35 @@ const BulletsSection = () => {
                 </BulletPoint>
             </Row>
         </Container>
-    </section>
+}
+
+const NewsletterSection = () => {
+    const style = StyleSheet.create({
+        registrationBox: {
+            textAlign: 'center',
+            marginTop: '20px',
+        },
+        registrationButton: {
+            marginLeft: '5px',
+        },
+    })
+
+    return <Container className="text-center">
+            {/*TODO Translate*/}
+            <h2>Let us notify you when CryFS is stable!</h2>
+            <div className={css(style.registrationBox)}>
+                <Form inline className="justify-content-center">
+                    <FormGroup>
+                        <Label for="inputEmail" className="sr-only">Email Address:</Label>
+                        <Input type="email" name="email" id="inputEmail" placeholder="Enter email" required={true} autoComplete="off" />
+                    </FormGroup>
+                    <Button color="primary" className={css(style.registrationButton)}>
+                        Get Notified &nbsp;
+                        <FontAwesomeIcon icon={faAngleDoubleRight} />
+                    </Button>
+                </Form>
+            </div>
+        </Container>
 }
 
 const Index = () => (
@@ -93,7 +110,7 @@ const Index = () => (
         <Teaser />
         <AlternatingSections>
             <section><BulletsSection /></section>
-            <section>second</section>
+            <section><NewsletterSection /></section>
             <section>third</section>
             <section>fourth</section>
             <section>fifth</section>
