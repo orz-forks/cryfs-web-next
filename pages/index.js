@@ -3,10 +3,10 @@ import Head from 'next/head'
 import Link from 'next/link'
 import AlternatingSections from '../components/AlternatingSections.js'
 import Teaser from '../components/Teaser.js'
-import { Form, FormGroup, Label, Input, Button, Container, Row, Col } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button, Container, Row, Col, Collapse } from 'reactstrap';
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDoubleRight, faLightbulb, faLock, faComments } from '@fortawesome/free-solid-svg-icons'
+import { faAngleDoubleRight, faLightbulb, faLock, faComments, faSpinner } from '@fortawesome/free-solid-svg-icons'
 
 const title = "CryFS: A cryptographic filesystem for the cloud"
 const description = "CryFS encrypts your Dropbox and protects you against hackers and data leaks. It also works well together with other cloud providers."
@@ -77,6 +77,24 @@ const NewsletterSection = () => {
         registrationButton: {
             marginLeft: '5px',
         },
+        notificationArea: {
+            marginTop: '30px',
+        },
+        notification_success: {
+            color: 'green',
+            marginTop: '10px',
+            marginBottom: '10px',
+        },
+        notification_error: {
+            color: 'red',
+            marginTop: '10px',
+            marginBottom: '10px',
+        },
+        notification_spinner: {
+            color: '#909090',
+            marginTop: '10px',
+            marginBottom: '10px',
+        },
     })
 
     return <Container className="text-center">
@@ -93,6 +111,24 @@ const NewsletterSection = () => {
                         <FontAwesomeIcon icon={faAngleDoubleRight} />
                     </Button>
                 </Form>
+                <Collapse isOpen={false} className={css(style.notificationArea)}>
+                    {/*TODO Translate*/}
+                    <Collapse isOpen={false} className={`lead ${css(style.notification_success)}`}>
+                        Thank you. You'll get a confirmation email shortly.
+                    </Collapse>
+                    <Collapse isOpen={false} className={`lead ${css(style.notification_error)}`}>
+                        Invalid email address.
+                    </Collapse>
+                    <Collapse isOpen={false} className={`lead ${css(style.notification_error)}`}>
+                        You unsubscribed before and we can't resubscribe you to protect against spam. Please send an email to messmer@cryfs.org.
+                    </Collapse>
+                    <Collapse isOpen={false} className={`lead ${css(style.notification_error)}`}>
+                        An error occurred. Please subscribe by sending an email to messmer@cryfs.org.
+                    </Collapse>
+                    <Collapse isOpen={false}>
+                        <FontAwesomeIcon icon={faSpinner} className={`${css(style.notification_spinner)} fa-pulse`} />
+                    </Collapse>
+                </Collapse>
             </div>
         </Container>
 }
