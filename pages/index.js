@@ -40,13 +40,20 @@ const BulletsSection = () => {
                 <h2 className={css(style.title)}>{props.title}</h2>
                 {props.children}
                 <p>
-                    <Link href={props.details_link_target}>
-                        <Button outline color="secondary">
+                    { (!props.external_link) ?
+                        <Link href={props.details_link_target}>
+                            <Button outline color="secondary">
+                                {/*TODO Translate*/}
+                                Details &nbsp;
+                                <FontAwesomeIcon icon={faAngleDoubleRight}/>
+                            </Button>
+                        </Link> :
+                        <Button outline color="secondary" href={props.details_link_target}>
                             {/*TODO Translate*/}
                             Details &nbsp;
-                            <FontAwesomeIcon icon={faAngleDoubleRight} />
+                            <FontAwesomeIcon icon={faAngleDoubleRight}/>
                         </Button>
-                    </Link>
+                    }
                 </p>
             </div>
         </Col>
@@ -61,7 +68,7 @@ const BulletsSection = () => {
                 <BulletPoint title="Secure" icon={faLock} details_link_target="/howitworks">
                     <p>Your data only leaves your computer in encrypted form. File contents, metadata and directory structure are all secure from someone who hacked your cloud.</p>
                 </BulletPoint>
-                <BulletPoint title="Free & Open Source" icon={faComments} details_link_target="http://www.gnu.org/philosophy/free-sw.html">
+                <BulletPoint title="Free & Open Source" icon={faComments} details_link_target="http://www.gnu.org/philosophy/free-sw.html" external_link={true} >
                     <p>Released under LGPL and available on <a href="https://github.com/cryfs/cryfs">GitHub</a>. Free to use for everyone. Its security is verifiable and the community can work on improvements.</p>
                 </BulletPoint>
             </Row>
@@ -193,7 +200,7 @@ const ContactSection = () => {
     </Container>
 }
 
-const Index = () => (
+export default () => (
     <Layout>
         <OpenGraphTags />
 
@@ -211,5 +218,3 @@ const Index = () => (
         </AlternatingSections>
     </Layout>
 )
-
-export default Index

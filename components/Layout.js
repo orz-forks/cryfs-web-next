@@ -54,13 +54,13 @@ class MyNavBar extends React.Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="/">How it works</NavLink>
+                                <NavLink href="/howitworks">How it works</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/">Tutorial</NavLink>
+                                <NavLink href="/tutorial">Tutorial</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/">Compare</NavLink>
+                                <NavLink href="/comparison">Compare</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="/">Download</NavLink>
