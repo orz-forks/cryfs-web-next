@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[15],{TEiw:function(n,e,t){"use strict";t.r(e);var i=t("q1tI"),a=t.n(i),o=t("5Yp1");e.default=function(n){return a.a.createElement(o.a,null,"Legal Notice TODO")}},kXRx:function(n,e,t){(window.__NEXT_P=window.__NEXT_P||[]).push(["/legal_notice",function(){var n=t("TEiw");return{page:n.default||n}}])}},[["kXRx",1,0]]]);

@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[4],{"6WSp":function(n,o,t){(window.__NEXT_P=window.__NEXT_P||[]).push(["/comparison",function(){var n=t("HoO1");return{page:n.default||n}}])},HoO1:function(n,o,t){"use strict";t.r(o);var a=t("q1tI"),e=t.n(a),p=t("5Yp1");o.default=function(n){return e.a.createElement(p.a,null,"Comparison TODO")}}},[["6WSp",1,0]]]);

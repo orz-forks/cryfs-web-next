@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[9],{"7qB4":function(n,e,o){"use strict";o.r(e);var t=o("q1tI"),i=o.n(t),u=o("5Yp1");e.default=function(n){return i.a.createElement(u.a,null,"Version Info TODO")}},qPIe:function(n,e,o){(window.__NEXT_P=window.__NEXT_P||[]).push(["/version_info",function(){var n=o("7qB4");return{page:n.default||n}}])}},[["qPIe",1,0]]]);
