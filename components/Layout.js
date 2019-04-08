@@ -40,10 +40,11 @@ class MyNavBar extends React.Component {
         const navbarStyle = StyleSheet.create({
             navbar: {
                 fontSize: '1.2rem',
-                width: '100%',
                 paddingRight: '140px',
                 paddingLeft: '15px',
-                display: 'flex',
+                '@media (min-width: 768px)': {
+                    display: 'flex',
+                },
             },
         })
         return <div>
@@ -52,7 +53,7 @@ class MyNavBar extends React.Component {
                     <NavbarToggler onClick={this.toggle} />
                     <NavbarBrand href="/">CryFS</NavbarBrand>
                     <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
+                        <Nav navbar>
                             <NavItem>
                                 <Link href="/howitworks"><NavLink>How it works</NavLink></Link>
                             </NavItem>

@@ -15,13 +15,12 @@ const DonateModal = () => {
             width: 'auto',
             maxWidth: '500px',
             minWidth: '375px',
-            // TODO
-            // @media #{$is-min-md} {
-            //     min-width: 375px;
-            // }
-            // @media #{$is-max-sm} {
-            //     min-width: 310px;
-            // }
+            '@media (min-width: 768px)': {
+                minWidth: '375px',
+            },
+            '@media (max-width: 768px)': {
+                minWidth: '310px',
+            },
             maxHeight: 'none!important',
         }
     })
