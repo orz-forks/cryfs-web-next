@@ -80,7 +80,7 @@ class MyNavBar extends React.Component {
 const githubRibbonStyle = StyleSheet.create({
     ribbon: {
         position: 'absolute',
-        zIndex: 2000,
+        zIndex: 1000,
         top: 0,
         right: 0,
         border: 0,
