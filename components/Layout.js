@@ -31,12 +31,12 @@ class MyNavBar extends React.Component {
             isOpen: false
         };
     }
-    toggle() {
+    toggle = () => {
         this.setState({
             isOpen: !this.state.isOpen
         });
     }
-    render() {
+    render = () => {
         const navbarStyle = StyleSheet.create({
             navbar: {
                 fontSize: '1.2rem',
@@ -54,19 +54,19 @@ class MyNavBar extends React.Component {
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="/howitworks">How it works</NavLink>
+                                <Link href="/howitworks"><NavLink>How it works</NavLink></Link>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/tutorial">Tutorial</NavLink>
+                                <Link href="/tutorial"><NavLink>Tutorial</NavLink></Link>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/comparison">Compare</NavLink>
+                                <Link href="/comparison"><NavLink>Compare</NavLink></Link>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/">Download</NavLink>
+                                <Link href="/"><NavLink>Download</NavLink></Link>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/">Donate</NavLink>
+                                <Link href="/#donate"><NavLink>Donate</NavLink></Link>
                             </NavItem>
                         </Nav>
                     </Collapse>

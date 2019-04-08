@@ -2,6 +2,7 @@ import Layout from '../components/Layout.js'
 import Head from 'next/head'
 import Link from 'next/link'
 import AlternatingSections from '../components/AlternatingSections.js'
+import DonateModal from '../components/modals/Donate.js'
 import Teaser from '../components/Teaser.js'
 import { Form, FormGroup, Label, Input, Button, Container, Row, Col, Collapse } from 'reactstrap';
 import { StyleSheet, css } from 'aphrodite/no-important'
@@ -211,6 +212,9 @@ export default () => (
         </Head>
 
         <Teaser />
+
+        <DonateModal />
+
         <AlternatingSections>
             <section><BulletsSection /></section>
             <section><NewsletterSection /></section>
