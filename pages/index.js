@@ -4,6 +4,7 @@ import Link from 'next/link'
 import AlternatingSections from '../components/AlternatingSections.js'
 import DonateModal from '../components/modals/Donate.js'
 import Teaser from '../components/Teaser.js'
+import NewsletterSection from '../components/sections/NewsletterSection.js'
 import { Form, FormGroup, Label, Input, Button, Container, Row, Col, Collapse } from 'reactstrap';
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -96,53 +97,6 @@ const formStyle = StyleSheet.create({
         marginBottom: '10px',
     },
 })
-
-const NewsletterSection = () => {
-    const style = StyleSheet.create({
-        registrationBox: {
-            textAlign: 'center',
-            marginTop: '20px',
-        },
-        registrationButton: {
-            marginLeft: '5px',
-        },
-    })
-
-    return <Container className="text-center">
-            {/*TODO Translate*/}
-            <h2>Let us notify you when CryFS is stable!</h2>
-            <div className={css(style.registrationBox)}>
-                <Form inline className="justify-content-center">
-                    <FormGroup>
-                        <Label for="inputEmail" className="sr-only">Email Address:</Label>
-                        <Input type="email" name="email" id="inputEmail" placeholder="Enter email" required={true} autoComplete="off" />
-                    </FormGroup>
-                    <Button type="submit" color="primary" className={css(style.registrationButton)}>
-                        Get Notified &nbsp;
-                        <FontAwesomeIcon icon={faAngleDoubleRight} />
-                    </Button>
-                </Form>
-                <Collapse isOpen={false} className={css(formStyle.notificationArea)}>
-                    {/*TODO Translate*/}
-                    <Collapse isOpen={false} className={`lead ${css(formStyle.notification_success)}`}>
-                        Thank you. You'll get a confirmation email shortly.
-                    </Collapse>
-                    <Collapse isOpen={false} className={`lead ${css(formStyle.notification_error)}`}>
-                        Invalid email address.
-                    </Collapse>
-                    <Collapse isOpen={false} className={`lead ${css(formStyle.notification_error)}`}>
-                        You unsubscribed before and we can't resubscribe you to protect against spam. Please send an email to messmer@cryfs.org.
-                    </Collapse>
-                    <Collapse isOpen={false} className={`lead ${css(formStyle.notification_error)}`}>
-                        An error occurred. Please subscribe by sending an email to messmer@cryfs.org.
-                    </Collapse>
-                    <Collapse isOpen={false}>
-                        <FontAwesomeIcon icon={faSpinner} className={`${css(formStyle.notification_spinner)} fa-pulse`} />
-                    </Collapse>
-                </Collapse>
-            </div>
-        </Container>
-}
 
 const ContactSection = () => {
     const style = StyleSheet.create({

@@ -23,6 +23,17 @@ if (typeof window !== 'undefined') {
 }
 
 class MyNavBar extends React.Component {
+    navbarStyle = StyleSheet.create({
+        navbar: {
+            fontSize: '1.2rem',
+            paddingRight: '140px',
+            paddingLeft: '15px',
+            '@media (min-width: 768px)': {
+                display: 'flex',
+            },
+        },
+    })
+
     constructor(props) {
         super(props);
 
@@ -37,19 +48,9 @@ class MyNavBar extends React.Component {
         });
     }
     render = () => {
-        const navbarStyle = StyleSheet.create({
-            navbar: {
-                fontSize: '1.2rem',
-                paddingRight: '140px',
-                paddingLeft: '15px',
-                '@media (min-width: 768px)': {
-                    display: 'flex',
-                },
-            },
-        })
         return <div>
             <Navbar expand="md" color="dark" dark>
-                <div className={css(navbarStyle.navbar)}>
+                <div className={css(this.navbarStyle.navbar)}>
                     <NavbarToggler onClick={this.toggle} />
                     <NavbarBrand href="/">CryFS</NavbarBrand>
                     <Collapse isOpen={this.state.isOpen} navbar>
