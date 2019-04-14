@@ -1,8 +1,7 @@
 {
-  "name": "cryfs-web-next",
+  "name": "cryfs-web-frontend",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "dev": "next",
     "build": "next build",
