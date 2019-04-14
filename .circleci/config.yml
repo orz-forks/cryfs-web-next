@@ -14,26 +14,26 @@ jobs:
           name: Update Npm
           command: 'sudo npm install -g npm@latest'
       - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: v1-dependency-cache-{{ checksum "frontend/package.json" }}
       - run:
           name: Install Dependencies
-          command: npm install
+          command: cd frontend && npm install
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+          key: v1-dependency-cache-{{ checksum "frontend/package.json" }}
           paths:
-            - ./node_modules
+            - ./frontend/node_modules
       - run:
           name: Build
-          command: 'npm run build'
+          command: 'cd frontend && npm run build'
       - run:
           name: Export
-          command: 'npm run export'
+          command: 'cd frontend && npm run export'
       - run:
           name: Copy to Workspace
           command: |
             mkdir -p /tmp/workspace
             rm -rf /tmp/workspace/out
-            mv out /tmp/workspace
+            mv frontend/out /tmp/workspace
             mkdir /tmp/workspace/out/.circleci
             cp .circleci/config.dummy.yml /tmp/workspace/out/.circleci/config.yml
       - persist_to_workspace:
