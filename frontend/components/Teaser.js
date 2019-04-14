@@ -1,3 +1,5 @@
+"use strict";
+
 import {css, StyleSheet} from "aphrodite";
 import {Button} from "reactstrap";
 import Link from "next/link";

@@ -1,3 +1,5 @@
+"use strict";
+
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { StyleSheetServer } from 'aphrodite/no-important'
 

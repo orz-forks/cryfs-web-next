@@ -1,3 +1,5 @@
+"use strict";
+
 import Layout from '../components/Layout.js'
 import {VersionNumber} from '../config/CryfsVersion.js'
 

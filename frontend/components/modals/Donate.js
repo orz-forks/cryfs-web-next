@@ -1,3 +1,5 @@
+"use strict";
+
 import React from 'react';
 import { ModalBody } from 'reactstrap';
 import { StyleSheet, css } from 'aphrodite/no-important'

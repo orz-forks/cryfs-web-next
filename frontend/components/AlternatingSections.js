@@ -1,3 +1,5 @@
+"use strict";
+
 import {css, StyleSheet} from "aphrodite";
 
 const AlternatingSections = props => {

@@ -1,3 +1,5 @@
+"use strict";
+
 import Layout from '../components/Layout.js'
 import Head from 'next/head'
 import Link from 'next/link'

@@ -1,3 +1,5 @@
+"use strict";
+
 import Head from 'next/head'
 import '../assets/styles/bootstrap.scss'
 import * as React from "react";

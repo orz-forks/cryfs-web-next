@@ -1,3 +1,5 @@
+"use strict";
+
 import {Router, withRouter} from "next/dist/client/router";
 import Url from "url-parse";
 import {Modal} from "reactstrap";
