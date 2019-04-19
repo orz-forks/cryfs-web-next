@@ -11,6 +11,7 @@ import { StyleSheet, css } from 'aphrodite/no-important'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleRight, faLightbulb, faLock, faComments, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import MetaTags from "../components/MetaTags";
+import Head from "next/head";
 
 const BulletsSection = () => {
     const style = StyleSheet.create({
@@ -145,6 +146,7 @@ const ContactSection = () => {
 
 export default () => (
     <Layout>
+        {/* TODO translate tags in here*/}
         <MetaTags
             title="CryFS: A cryptographic filesystem for the cloud"
             url="https://www.cryfs.org"

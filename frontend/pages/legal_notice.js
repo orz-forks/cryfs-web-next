@@ -6,6 +6,7 @@ import MetaTags from '../components/MetaTags.js'
 
 export default (props) => (
     <>
+        {/* TODO translate tags in here*/}
         <MetaTags
             title="CryFS: Legal Notice"
             url="https://www.cryfs.org/legal_notice"
