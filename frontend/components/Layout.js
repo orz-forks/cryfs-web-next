@@ -50,33 +50,31 @@ class MyNavBar extends React.Component {
         });
     }
     render = () => {
-        return <div>
-            <Navbar expand="md" color="dark" dark>
-                <div className={css(this.navbarStyle.navbar)}>
-                    <NavbarToggler onClick={this.toggle} />
-                    <NavbarBrand href="/">CryFS</NavbarBrand>
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav navbar>
-                            <NavItem>
-                                <Link href="/howitworks"><NavLink>How it works</NavLink></Link>
-                            </NavItem>
-                            <NavItem>
-                                <Link href="/tutorial"><NavLink>Tutorial</NavLink></Link>
-                            </NavItem>
-                            <NavItem>
-                                <Link href="/comparison"><NavLink>Compare</NavLink></Link>
-                            </NavItem>
-                            <NavItem>
-                                <Link href="/"><NavLink>Download</NavLink></Link>
-                            </NavItem>
-                            <NavItem>
-                                <Link href="/#donate"><NavLink>Donate</NavLink></Link>
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
-                </div>
-            </Navbar>
-        </div>
+        return <Navbar expand="md" color="dark" dark>
+            <div className={css(this.navbarStyle.navbar)}>
+                <NavbarToggler onClick={this.toggle} />
+                <NavbarBrand href="/">CryFS</NavbarBrand>
+                <Collapse isOpen={this.state.isOpen} navbar>
+                    <Nav navbar>
+                        <NavItem>
+                            <Link href="/howitworks"><NavLink>How it works</NavLink></Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link href="/tutorial"><NavLink>Tutorial</NavLink></Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link href="/comparison"><NavLink>Compare</NavLink></Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link href="/"><NavLink>Download</NavLink></Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link href="/#donate"><NavLink>Donate</NavLink></Link>
+                        </NavItem>
+                    </Nav>
+                </Collapse>
+            </div>
+        </Navbar>
     }
 }
 
@@ -141,7 +139,7 @@ const Footer = props => (
 )
 
 const Layout = props => (
-    <div>
+    <>
         <Head>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="shortcut icon" type="image/png" href={require("../assets/images/favicon.png")} />
@@ -151,7 +149,7 @@ const Layout = props => (
         <GithubRibbon />
         {props.children}
         <Footer />
-    </div>
+    </>
 )
 
 export default Layout

@@ -1,6 +1,7 @@
 "use strict";
 
-import {css, StyleSheet} from "aphrodite";
+import {css, StyleSheet} from "aphrodite"
+import React from 'react'
 
 const AlternatingSections = props => {
     const styles = [
@@ -24,7 +25,7 @@ const AlternatingSections = props => {
 
     let styleIndex = (typeof props.start_index === 'undefined') ? 0 : props.start_index
 
-    return <div>{
+    return <> {
         React.Children.map(props.children, child => {
             if (child.type != "section") {
                 throw `AlternatingSections component can only have section children but found ${child.type}`
@@ -39,7 +40,7 @@ const AlternatingSections = props => {
             styleIndex = (styleIndex + 1) % styles.length
             return React.cloneElement(child, {className: oldClassName + css(style.section)})
         })
-    }</div>
+    } </>
 }
 
 export default AlternatingSections
