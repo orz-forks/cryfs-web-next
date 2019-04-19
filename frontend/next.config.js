@@ -21,7 +21,7 @@ const config = {
 
         // Create the /version_info.json file in the export
 
-        version_info = JSON.stringify({
+        const version_info = JSON.stringify({
             "version_info":{
                 "current": VersionNumber,
             },
