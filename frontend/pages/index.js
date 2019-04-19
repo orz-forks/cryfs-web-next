@@ -1,7 +1,6 @@
 "use strict";
 
 import Layout from '../components/Layout.js'
-import Head from 'next/head'
 import Link from 'next/link'
 import AlternatingSections from '../components/AlternatingSections.js'
 import DonateModal from '../components/modals/Donate.js'
@@ -11,20 +10,7 @@ import { Form, FormGroup, Label, Input, Button, Container, Row, Col, Collapse } 
 import { StyleSheet, css } from 'aphrodite/no-important'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleRight, faLightbulb, faLock, faComments, faSpinner } from '@fortawesome/free-solid-svg-icons'
-
-const title = "CryFS: A cryptographic filesystem for the cloud"
-const description = "CryFS encrypts your Dropbox and protects you against hackers and data leaks. It also works well together with other cloud providers."
-
-const OpenGraphTags = () => (
-    <Head>
-        {/* TODO translate tags in here*/}
-        <meta property="og:title" content={title} />
-        <meta property="og:url" content="https://www.cryfs.org" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={require("../assets/images/logo.png")} />
-        <meta property="og:description" content={description} />
-    </Head>
-)
+import MetaTags from "../components/MetaTags";
 
 const BulletsSection = () => {
     const style = StyleSheet.create({
@@ -159,13 +145,11 @@ const ContactSection = () => {
 
 export default () => (
     <Layout>
-        <OpenGraphTags />
-
-        <Head>
-            {/* TODO translate tags in here*/}
-            <meta name="description" content={description} />
-            <title>{title}</title>
-        </Head>
+        <MetaTags
+            title="CryFS: A cryptographic filesystem for the cloud"
+            url="https://www.cryfs.org"
+            description="CryFS encrypts your Dropbox and protects you against hackers and data leaks. It also works well together with other cloud providers."
+        />
 
         <Teaser />
 
