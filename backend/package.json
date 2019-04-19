@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "description": "Backend API to make the cryfs.org website work",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "Sebastian Messmer",
   "license": "UNLICENSED",
   "private": true,

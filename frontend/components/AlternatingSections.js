@@ -22,7 +22,7 @@ const AlternatingSections = props => {
         }),
     ]
 
-    let styleIndex = 0
+    let styleIndex = (typeof props.start_index === 'undefined') ? 0 : props.start_index
 
     return <div>{
         React.Children.map(props.children, child => {
