@@ -35,7 +35,10 @@ class MyNavBar extends React.Component {
             },
         },
         link: {
-          cursor: 'pointer',
+            cursor: 'pointer',
+        },
+        brand: {
+            marginLeft: '10px',
         },
     })
 
@@ -56,7 +59,7 @@ class MyNavBar extends React.Component {
         return <Navbar expand="md" color="dark" dark>
             <div className={css(this.navbarStyle.navbar)}>
                 <NavbarToggler onClick={this.toggle} />
-                <NavbarBrand href="/">CryFS</NavbarBrand>
+                <NavbarBrand href="/"><div className={css(this.navbarStyle.brand)}>CryFS</div></NavbarBrand>
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav navbar>
                         <NavItem>
