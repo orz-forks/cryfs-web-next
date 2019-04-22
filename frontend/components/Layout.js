@@ -34,6 +34,9 @@ class MyNavBar extends React.Component {
                 display: 'flex',
             },
         },
+        link: {
+          cursor: 'pointer',
+        },
     })
 
     constructor(props) {
@@ -57,19 +60,19 @@ class MyNavBar extends React.Component {
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav navbar>
                         <NavItem>
-                            <Link href="/howitworks"><NavLink>How it works</NavLink></Link>
+                            <Link href="/howitworks"><NavLink className={css(this.navbarStyle.link)}>How it works</NavLink></Link>
                         </NavItem>
                         <NavItem>
-                            <Link href="/tutorial"><NavLink>Tutorial</NavLink></Link>
+                            <Link href="/tutorial"><NavLink className={css(this.navbarStyle.link)}>Tutorial</NavLink></Link>
                         </NavItem>
                         <NavItem>
-                            <Link href="/comparison"><NavLink>Compare</NavLink></Link>
+                            <Link href="/comparison"><NavLink className={css(this.navbarStyle.link)}>Compare</NavLink></Link>
                         </NavItem>
                         <NavItem>
-                            <Link href="/"><NavLink>Download</NavLink></Link>
+                            <Link href="/"><NavLink className={css(this.navbarStyle.link)}>Download</NavLink></Link>
                         </NavItem>
                         <NavItem>
-                            <Link href="/#donate"><NavLink>Donate</NavLink></Link>
+                            <Link href="/#donate"><NavLink className={css(this.navbarStyle.link)}>Donate</NavLink></Link>
                         </NavItem>
                     </Nav>
                 </Collapse>

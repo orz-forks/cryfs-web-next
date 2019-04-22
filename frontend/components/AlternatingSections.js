@@ -27,9 +27,6 @@ const AlternatingSections = props => {
 
     return <> {
         React.Children.map(props.children, child => {
-            if (child.type != "section") {
-                throw `AlternatingSections component can only have section children but found ${child.type}`
-            }
             let oldClassName = child.props.className
             if (oldClassName) {
                 oldClassName += " "

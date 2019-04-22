@@ -1,3 +1,21 @@
+import AlternatingSections from '../components/AlternatingSections'
+import {Container} from 'reactstrap'
+import ContentHeaderSection from '../components/ContentHeaderSection'
+import Layout from '../components/Layout'
+import MetaTags from '../components/MetaTags'
+
+<MetaTags
+    title="CryFS: Legal Notice"
+    url="https://www.cryfs.org/legal_notice"
+    description="Legal Notice for CryFS. CryFS encrypts your Dropbox and protects you against hackers and data leaks. It also works well together with other cloud providers."
+/>
+        
+<Layout>
+<AlternatingSections start_index={1}>
+<ContentHeaderSection title="Legal Notice" />
+<section>
+<Container>
+
 ## This site is operated by
 
 <address>
@@ -88,3 +106,8 @@ vollumfänglich werden nutzen können. Sie können darüber hinaus die Erfassung
 Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse) an Google sowie die Verarbeitung dieser Daten durch Google
 verhindern, indem sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen und installieren:
 http://tools.google.com/dlpage/gaoptout?hl=de.
+
+</Container>
+</section>
+</AlternatingSections>
+</Layout>

@@ -36,6 +36,7 @@ const config = {
         });
         return defaultPathMap;
     },
+    pageExtensions: ['js', 'md'],
 }
 
 module.exports = withPlugins([
