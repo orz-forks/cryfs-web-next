@@ -24,24 +24,24 @@ if (typeof window !== 'undefined') {
     StyleSheet.rehydrate(window.__NEXT_DATA__.ids)
 }
 
-class MyNavBar extends React.Component {
-    navbarStyle = StyleSheet.create({
-        navbar: {
-            fontSize: '1.2rem',
-            paddingRight: '140px',
-            paddingLeft: '15px',
-            '@media (min-width: 768px)': {
-                display: 'flex',
-            },
+const navbarStyle = StyleSheet.create({
+    navbar: {
+        fontSize: '1.2rem',
+        paddingRight: '140px',
+        paddingLeft: '15px',
+        '@media (min-width: 768px)': {
+            display: 'flex',
         },
-        link: {
-            cursor: 'pointer',
-        },
-        brand: {
-            marginLeft: '10px',
-        },
-    })
+    },
+    link: {
+        cursor: 'pointer',
+    },
+    brand: {
+        marginLeft: '10px',
+    },
+})
 
+class MyNavBar extends React.Component {
     constructor(props) {
         super(props);
 
@@ -57,25 +57,25 @@ class MyNavBar extends React.Component {
     }
     render = () => {
         return <Navbar expand="md" color="dark" dark>
-            <div className={css(this.navbarStyle.navbar)}>
+            <div className={css(navbarStyle.navbar)}>
                 <NavbarToggler onClick={this.toggle} />
-                <NavbarBrand href="/"><div className={css(this.navbarStyle.brand)}>CryFS</div></NavbarBrand>
+                <NavbarBrand href="/"><div className={css(navbarStyle.brand)}>CryFS</div></NavbarBrand>
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav navbar>
                         <NavItem>
-                            <Link href="/howitworks"><NavLink className={css(this.navbarStyle.link)}>How it works</NavLink></Link>
+                            <Link href="/howitworks"><NavLink className={css(navbarStyle.link)}>How it works</NavLink></Link>
                         </NavItem>
                         <NavItem>
-                            <Link href="/tutorial"><NavLink className={css(this.navbarStyle.link)}>Tutorial</NavLink></Link>
+                            <Link href="/tutorial"><NavLink className={css(navbarStyle.link)}>Tutorial</NavLink></Link>
                         </NavItem>
                         <NavItem>
-                            <Link href="/comparison"><NavLink className={css(this.navbarStyle.link)}>Compare</NavLink></Link>
+                            <Link href="/comparison"><NavLink className={css(navbarStyle.link)}>Compare</NavLink></Link>
                         </NavItem>
                         <NavItem>
-                            <Link href="/"><NavLink className={css(this.navbarStyle.link)}>Download</NavLink></Link>
+                            <Link href="/"><NavLink className={css(navbarStyle.link)}>Download</NavLink></Link>
                         </NavItem>
                         <NavItem>
-                            <Link href="/#donate"><NavLink className={css(this.navbarStyle.link)}>Donate</NavLink></Link>
+                            <Link href="/#donate"><NavLink className={css(navbarStyle.link)}>Donate</NavLink></Link>
                         </NavItem>
                     </Nav>
                 </Collapse>
@@ -144,7 +144,7 @@ const Footer = props => (
     </section>
 )
 
-const Layout = props => (
+export default (props) => (
     <>
         <Head>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -157,5 +157,3 @@ const Layout = props => (
         <Footer />
     </>
 )
-
-export default Layout

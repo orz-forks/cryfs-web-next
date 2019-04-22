@@ -77,13 +77,11 @@ class RouteHashBasedModal extends React.Component {
         this.routingListener.finish()
     }
 
-    render = () => {
-        return (
-            <Modal isOpen={this.state.show} toggle={this.toggle} {...this.props}>
-                {this.props.children}
-            </Modal>
-        );
-    }
+    render = () => (
+        <Modal isOpen={this.state.show} toggle={this.toggle} {...this.props}>
+            {this.props.children}
+        </Modal>
+    )
 }
 
 export default withRouter(RouteHashBasedModal)

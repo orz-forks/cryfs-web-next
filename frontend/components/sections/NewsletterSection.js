@@ -6,7 +6,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDoubleRight, faSpinner} from "@fortawesome/free-solid-svg-icons";
 import fetch from 'unfetch'
 
-const formStyle = StyleSheet.create({
+const style = StyleSheet.create({
     notificationArea: {
         marginTop: '30px',
     },
@@ -25,19 +25,16 @@ const formStyle = StyleSheet.create({
         marginTop: '10px',
         marginBottom: '10px',
     },
+    registrationBox: {
+        textAlign: 'center',
+        marginTop: '20px',
+    },
+    registrationButton: {
+        marginLeft: '5px',
+    },
 })
 
 class NewsletterSection extends React.Component {
-    style = StyleSheet.create({
-        registrationBox: {
-            textAlign: 'center',
-            marginTop: '20px',
-        },
-        registrationButton: {
-            marginLeft: '5px',
-        },
-    })
-
     constructor(props) {
         super(props)
 
@@ -82,36 +79,36 @@ class NewsletterSection extends React.Component {
         return <Container className="text-center">
             {/*TODO Translate*/}
             <h2>Let us notify you when CryFS is stable!</h2>
-            <div className={css(this.style.registrationBox)}>
+            <div className={css(style.registrationBox)}>
                 <Form inline onSubmit={this.onSubmit} className="justify-content-center">
                     <FormGroup>
                         <Label for="inputEmail" className="sr-only">Email Address:</Label>
                         <Input type="email" name="email" id="inputEmail" placeholder="Enter email" required={true}
                                autoComplete="off" value={this.state.email} onChange={this.onEmailChange} />
                     </FormGroup>
-                    <Button color="primary" className={css(this.style.registrationButton)}>
+                    <Button color="primary" className={css(style.registrationButton)}>
                         Get Notified &nbsp;
                         <FontAwesomeIcon icon={faAngleDoubleRight}/>
                     </Button>
                 </Form>
-                <Collapse isOpen={false} className={css(formStyle.notificationArea)}>
+                <Collapse isOpen={false} className={css(style.notificationArea)}>
                     {/*TODO Translate*/}
-                    <Collapse isOpen={false} className={`lead ${css(formStyle.notification_success)}`}>
+                    <Collapse isOpen={false} className={`lead ${css(style.notification_success)}`}>
                         Thank you. You'll get a confirmation email shortly.
                     </Collapse>
-                    <Collapse isOpen={false} className={`lead ${css(formStyle.notification_error)}`}>
+                    <Collapse isOpen={false} className={`lead ${css(style.notification_error)}`}>
                         Invalid email address.
                     </Collapse>
-                    <Collapse isOpen={false} className={`lead ${css(formStyle.notification_error)}`}>
+                    <Collapse isOpen={false} className={`lead ${css(style.notification_error)}`}>
                         You unsubscribed before and we can't resubscribe you to protect against spam. Please send an
                         email to messmer@cryfs.org.
                     </Collapse>
-                    <Collapse isOpen={false} className={`lead ${css(formStyle.notification_error)}`}>
+                    <Collapse isOpen={false} className={`lead ${css(style.notification_error)}`}>
                         An error occurred. Please subscribe by sending an email to messmer@cryfs.org.
                     </Collapse>
                     <Collapse isOpen={false}>
                         <FontAwesomeIcon icon={faSpinner}
-                                         className={`${css(formStyle.notification_spinner)} fa-pulse`}/>
+                                         className={`${css(style.notification_spinner)} fa-pulse`}/>
                     </Collapse>
                 </Collapse>
             </div>
