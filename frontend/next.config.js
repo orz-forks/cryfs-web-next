@@ -7,6 +7,7 @@ const withMDX = require('@zeit/next-mdx')
 const fs = require('fs');
 const { join } = require('path');
 const {VersionNumber} = require('./config/CryfsVersion.js');
+const ncp = require('ncp').ncp
 
 const config = {
     exportPathMap: async (
@@ -20,20 +21,27 @@ const config = {
         }
 
         // Create the /version_info.json file in the export
-
         const version_info = JSON.stringify({
             "version_info":{
                 "current": VersionNumber,
             },
             "warnings":{},
         })
-
         fs.writeFile(join(outDir, 'version_info.json'), version_info, function(err) {
             if(err) {
                 throw err
             }
             console.log("Written version_info.json");
         });
+
+        // Copy all files from assets/static
+        ncp(join(dir, 'assets/static'), outDir, (err) => {
+            if (err) {
+                throw err
+            }
+            console.log("Copied static files");
+        })
+
         return defaultPathMap;
     },
     pageExtensions: ['js', 'md'],
