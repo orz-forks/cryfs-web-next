@@ -10,7 +10,7 @@ import EncfsImg from '../assets/images/encfs.jpg'
 import ECryptFsImg from '../assets/images/ecryptfs.png'
 import CryFsImg from '../assets/images/teaser_small.jpg'
 import { css } from 'aphrodite/no-important'
-import style from '../components/ComparisonPageStyle'
+import { style, ComparisonTable, ComparisonTableHead, ComparisonTableHeader, ComparisonTableBody, ComparisonTableRow, ComparisonTableCell } from '../components/ComparisonPageUtils'
 
 <MetaTags
     title="CryFS: Comparison of encrypted cloud storage solutions"
@@ -263,7 +263,100 @@ VeraCrypt works, as long as your container file is small, i.e. you don't mind sy
 CryFS solves all of these issues. It is a very new project and currently only available for Linux, but versions for other operating systems are on the way.
 So if you don't need Windows or Mac support today, you can give it a try.
 
-TODO TABLE
+<ComparisonTable>
+    <ComparisonTableHead>
+        <ComparisonTableHeader>CryFS</ComparisonTableHeader>
+        <ComparisonTableHeader>EncFS</ComparisonTableHeader>
+        <ComparisonTableHeader>eCryptfs</ComparisonTableHeader>
+        <ComparisonTableHeader>VeraCrypt</ComparisonTableHeader>
+    </ComparisonTableHead>
+    <ComparisonTableBody>
+        <ComparisonTableRow title="Easy to use">
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+        </ComparisonTableRow>
+        <ComparisonTableRow title="Performance">
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+        </ComparisonTableRow>
+        <ComparisonTableRow title="Works together with Dropbox">
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="no" />
+            <ComparisonTableCell type="half" footnote="a)" />
+        </ComparisonTableRow>
+        <ComparisonTableRow title="Small changes cause only small amount of data to be re-uploaded">
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="no" />
+        </ComparisonTableRow>
+        <ComparisonTableRow title="No known security flaws">
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="no" />
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+        </ComparisonTableRow>
+        <ComparisonTableRow title="Encrypts file contents">
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+        </ComparisonTableRow>
+        <ComparisonTableRow title="Encrypts file metadata and file sizes">
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="no" />
+            <ComparisonTableCell type="no" />
+            <ComparisonTableCell type="yes" />
+        </ComparisonTableRow>
+        <ComparisonTableRow title="Encrypts directory structure">
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="no" />
+            <ComparisonTableCell type="no" />
+            <ComparisonTableCell type="yes" />
+        </ComparisonTableRow>
+        <ComparisonTableRow title="Keeps confidentiality of data">
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+        </ComparisonTableRow>
+        <ComparisonTableRow title="Keeps integrity of data">
+            <ComparisonTableCell type="half" footnote="b)" />
+            <ComparisonTableCell type="half" footnote="c)" />
+            <ComparisonTableCell type="no" />
+            <ComparisonTableCell type="no" />
+        </ComparisonTableRow>
+        <ComparisonTableRow title="Available for Linux">
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+        </ComparisonTableRow>
+        <ComparisonTableRow title="Available for Mac OS X">
+            <ComparisonTableCell type="half" footnote="d)" />
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="no" />
+            <ComparisonTableCell type="yes" />
+        </ComparisonTableRow>
+        <ComparisonTableRow title="Available for Windows">
+            <ComparisonTableCell type="no" />
+            <ComparisonTableCell type="half" footnote="e)" />
+            <ComparisonTableCell type="no" />
+            <ComparisonTableCell type="yes" />
+        </ComparisonTableRow>
+        <ComparisonTableRow title="Already exists for some time">
+            <ComparisonTableCell type="no" />
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
+        </ComparisonTableRow>
+    </ComparisonTableBody>
+</ComparisonTable>
 
 </Container>
 </section>
