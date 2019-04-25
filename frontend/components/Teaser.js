@@ -96,7 +96,9 @@ export default () => (
                         <h1 className={css(mdStyle.title_text_h1)}>{teaser_header}</h1>
                         <p className={css(mdStyle.title_text_p)}>{teaser_paragraph1}</p>
                         <p className={css(mdStyle.title_text_p)}>
-                            <Button color="primary" size="lg">Download(beta)</Button>
+                            <Link href="/#download">
+                                <Button color="primary" size="lg">Download(beta)</Button>
+                            </Link>
                             <Link href="/tutorial">
                                 <Button color="info" size="lg" className={css(tutorialBtnStyle.button)}>Tutorial</Button>
                             </Link>
