@@ -10,6 +10,19 @@ export const style = StyleSheet.create({
         marginBottom: '30px',
         width: '100%',
     },
+    footnotes: {
+        counterReset: 'list',
+    },
+    footnotesLi: {
+        listStyle: 'none',
+        position: 'relative',
+        ':before': {
+            counterIncrement: 'list',
+            content: 'counter(list, lower-alpha) ") "',
+            position: 'absolute',
+            left: '-1.4em',
+        }
+    },
 })
 
 const tableStyle = StyleSheet.create({

@@ -358,8 +358,36 @@ So if you don't need Windows or Mac support today, you can give it a try.
     </ComparisonTableBody>
 </ComparisonTable>
 
+<strong>Footnotes:</strong>
+<ol className={css(style.footnotes)}>
+    <li className={css(style.footnotesLi)}>VeraCrypt causes unresolvable conflicts when modifying the filesystem on two machines without full synchronization inbetween.</li>
+    <li className={css(style.footnotesLi)}>CryFS protects against a hacker introducing new changes, i.e. adding, deleting or modifying a file or directory, but does not protect against rolling back files or directories to a previous version. This is planned for future versions.</li>
+    <li className={css(style.footnotesLi)}>EncFS only protects file contents. It does not protect against adding or deleting files or directories. The current implementation is flawed because a hacker can simply disable the integrity check.</li>
+    <li className={css(style.footnotesLi)}>CryFS should work on Mac OS X if you compile it yourself, but there are no distribution packages offered.</li>
+    <li className={css(style.footnotesLi)}>There is a third-party experimental version of EncFS for Windows.</li>
+</ol>
+
+</Container>
+</section>
+
+<section>
+<Container>
+    <Row>
+        <Col style={{marginTop: '20px'}} md={{size: 8, offset: 2}}>
+            <Card body style={{ backgroundColor: '#f5f5f5', borderColor: '#e3e3e3' }}>
+                <div className="text-center">
+                    <p className="lead">
+                        Get started with the
+                    </p>
+                    <Link href="/tutorial"><Button color="primary" size="lg">CryFS Tutorial</Button></Link>
+                </div>
+            </Card>
+        </Col>
+    </Row>
 </Container>
 </section>
 
 </AlternatingSections>
 </Layout>
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56b4f9ebfcc506d2" async="async" />
