@@ -2,7 +2,7 @@
 
 import {Router, withRouter} from "next/dist/client/router";
 import Url from "url-parse";
-import {Modal, ModalHeader} from "reactstrap";
+import {Modal, ModalHeader, ModalFooter, Button} from "reactstrap";
 
 class RoutingListener {
     constructor(initialUrl) {
@@ -85,6 +85,11 @@ class RouteHashBasedModal extends React.Component {
                 </ModalHeader>
             }
             {this.props.children}
+            {(this.props.showCloseButtonInFooter) &&
+                <ModalFooter>
+                    <Button outline color="secondary" onClick={this.toggle}>Close</Button>
+                </ModalFooter>
+            }
         </Modal>
     )
 }

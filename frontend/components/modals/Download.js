@@ -191,12 +191,12 @@ const tabs = () => [
                 <p>And then install CryFS:</p>
                 <ul>
                     <li>
-                        <a href="https://github.com/cryfs/cryfs/releases/download/0.10.0/cryfs-0.10.0-win64.msi">CryFS 64bit</a>
+                        <a href="https://github.com/cryfs/cryfs/releases/download/0.10.1/cryfs-0.10.1-win64.msi">CryFS 64bit</a>
                         <span>&nbsp;</span>
                         <span>or</span>
                     </li>
                     <li>
-                        <a href="https://github.com/cryfs/cryfs/releases/download/0.10.0/cryfs-0.10.0-win32.msi">CryFS 632it</a>
+                        <a href="https://github.com/cryfs/cryfs/releases/download/0.10.1/cryfs-0.10.1-win32.msi">CryFS 32bit</a>
                     </li>
                 </ul>
             </>
@@ -205,7 +205,7 @@ const tabs = () => [
 ]
 
 const DownloadModal = () => (
-    <RouteHashBasedModal hash="#download" header={`Download CryFS ${VersionNumber} (beta)`} labelledBy="downloadModalTitle" size="lg">
+    <RouteHashBasedModal hash="#download" header={`Download CryFS ${VersionNumber} (beta)`} showCloseButtonInFooter labelledBy="downloadModalTitle" size="lg">
         <ModalBody>
             <Container fluid>
                 <Row>
