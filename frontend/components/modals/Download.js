@@ -1,7 +1,7 @@
 "use strict";
 
 import React from 'react';
-import { ModalHeader, ModalBody, ModalFooter, Row, Col, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
+import { ModalBody, Container, Row, Col, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import { StyleSheet, css } from 'aphrodite/no-important'
 import {Console, ConsoleCommand} from '../../components/Console'
 import RouteHashBasedModal from './RouteHashBasedModal'
@@ -10,8 +10,6 @@ import UbuntuLogo from '../../assets/images/ubuntu.png'
 import DebianLogo from '../../assets/images/debian.png'
 import OtherLogo from '../../assets/images/other_os.png'
 import classnames from 'classnames'
-
-// TODO Fix modal width or add more tabs?
 
 const style = StyleSheet.create({
     tabHeader: {
@@ -84,10 +82,8 @@ class Tabs extends React.Component {
 
     render = () => (
         <>
-            <Nav tabs>
-                <Row>
-                    {this.renderTabHeaders()}
-                </Row>
+            <Nav tabs className="row">
+                {this.renderTabHeaders()}
             </Nav>
             <TabContent activeTab={this.state.activeTab} className={css(style.tabContent)}>
                 {this.renderTabBodies()}
@@ -211,15 +207,17 @@ const tabs = () => [
 const DownloadModal = () => (
     <RouteHashBasedModal hash="#download" header={`Download CryFS ${VersionNumber} (beta)`} labelledBy="downloadModalTitle" size="lg">
         <ModalBody>
-            <Row>
-                <Col md="12">
-                    <p>Select your operating system</p>
-                </Col>
-            </Row>
-            <Tabs tabs={tabs} initiallyActive={0} />
-            <p>
-                For older releases, see <a href="https://github.com/cryfs/cryfs/releases">here</a>.
-            </p>
+            <Container fluid>
+                <Row>
+                    <Col md="12">
+                        <p>Select your operating system</p>
+                    </Col>
+                </Row>
+                <Tabs tabs={tabs} initiallyActive={0} />
+                <p>
+                    For older releases, see <a href="https://github.com/cryfs/cryfs/releases">here</a>.
+                </p>
+            </Container>
         </ModalBody>
     </RouteHashBasedModal>
 )
