@@ -34,7 +34,7 @@ const style = StyleSheet.create({
 
 class Tabs extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         this.state = {
             activeTab: ((typeof this.props.initiallyActive == "undefined") ? 0 : this.props.initiallyActive),
@@ -56,7 +56,7 @@ class Tabs extends React.Component {
             index += 1
 
             return ((index) => (
-                <Col md="4">
+                <Col md="4" key={index}>
                     <NavItem className={css(style.tabHeader)}>
                         <NavLink className={classnames({active: this.state.activeTab === index})}
                                  onClick={() => {this.toggle(index)}}>
@@ -74,7 +74,7 @@ class Tabs extends React.Component {
             index += 1
 
             return ((index) => (
-                <TabPane tabId={index}>
+                <TabPane tabId={index} key={index}>
                     {tab.body}
                 </TabPane>))(index)
         })
