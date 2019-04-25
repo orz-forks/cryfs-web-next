@@ -4,6 +4,7 @@ import Layout from '../components/Layout'
 import Link from 'next/link'
 import AlternatingSections from '../components/AlternatingSections'
 import DonateModal from '../components/modals/Donate'
+import DownloadModal from '../components/modals/Download'
 import Teaser from '../components/Teaser'
 import NewsletterSection from '../components/sections/NewsletterSection'
 import { Form, FormGroup, Label, Input, Button, Container, Row, Col, Collapse } from 'reactstrap';
@@ -155,6 +156,7 @@ export default () => (
 
         <Teaser />
 
+        <DownloadModal />
         <DonateModal />
 
         <AlternatingSections>

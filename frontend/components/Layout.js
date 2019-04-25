@@ -71,8 +71,8 @@ class MyNavBar extends React.Component {
                         <NavItem>
                             <Link href="/comparison"><NavLink className={css(navbarStyle.link)}>Compare</NavLink></Link>
                         </NavItem>
-                        <NavItem>
-                            <Link href="/"><NavLink className={css(navbarStyle.link)}>Download</NavLink></Link>
+                        <NavItem className="d-none d-md-block">
+                            <Link href="/#download"><NavLink className={css(navbarStyle.link)}>Download</NavLink></Link>
                         </NavItem>
                         <NavItem>
                             <Link href="/#donate"><NavLink className={css(navbarStyle.link)}>Donate</NavLink></Link>

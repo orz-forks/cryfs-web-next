@@ -33,7 +33,7 @@ export const Console = (props) => (
 )
 
 export const ConsoleCommand = (props) => (
-    <div className={css(style.line)}>
+    <div className={css(style.line)} {...props}>
         <span className={css(style.linestart)}>$</span>
         {props.children}
     </div>

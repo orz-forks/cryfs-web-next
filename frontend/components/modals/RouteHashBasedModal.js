@@ -2,7 +2,7 @@
 
 import {Router, withRouter} from "next/dist/client/router";
 import Url from "url-parse";
-import {Modal} from "reactstrap";
+import {Modal, ModalHeader} from "reactstrap";
 
 class RoutingListener {
     constructor(initialUrl) {
@@ -79,6 +79,11 @@ class RouteHashBasedModal extends React.Component {
 
     render = () => (
         <Modal isOpen={this.state.show} toggle={this.toggle} {...this.props}>
+            {(typeof this.props.header != 'undefined') &&
+                <ModalHeader id={this.props.labelledBy} toggle={this.toggle}>
+                    {this.props.header}
+                </ModalHeader>
+            }
             {this.props.children}
         </Modal>
     )
