@@ -1,4 +1,5 @@
 import Mailchimp from 'mailchimp-api-v3'
+import cors_headers from './cors_headers'
 
 const list_id = process.env.MAILCHIMP_LIST_ID
 const api_token = process.env.MAILCHIMP_API_TOKEN
@@ -30,9 +31,7 @@ export const register = async (event, context) => {
 
     return {
         statusCode: 200,
-        headers: {
-            'Access-Control-Allow-Origin': '*', // Required for CORS support to work
-        },
+        headers: cors_headers,
         body: JSON.stringify({
             'success': true,
         }),

@@ -31,3 +31,14 @@ functions:
     environment:
       MAILCHIMP_API_TOKEN: ${ssm:MAILCHIMP_API_TOKEN~true}
       MAILCHIMP_LIST_ID: ${ssm:MAILCHIMP_LIST_ID~true}
+  contactSend:
+    handler: contact.send
+    events:
+      - http:
+          path: contact/send
+          # TODO Post
+          method: get
+          # TODO Restrict cors to requests coming from cryfs.org see https://serverless.com/framework/docs/providers/aws/events/apigateway/#simple-http-endpoint
+          cors: true
+    environment:
+      SENDGRID_API_KEY: ${ssm:SENDGRID_API_KEY~true}
