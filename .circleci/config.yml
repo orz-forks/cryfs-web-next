@@ -6,7 +6,7 @@ executors:
       - image: circleci/node:11.12.0
 
 jobs:
-  build:
+  frontend_build:
     executor: my-executor
     steps:
       - checkout
@@ -14,12 +14,12 @@ jobs:
           name: Update Npm
           command: 'sudo npm install -g npm@latest'
       - restore_cache:
-          key: v1-dependency-cache-{{ checksum "frontend/package.json" }}
+          key: v1-dependency-cache-frontend-{{ checksum "frontend/package.json" }}
       - run:
           name: Install Dependencies
           command: cd frontend && npm install
       - save_cache:
-          key: v1-dependency-cache-{{ checksum "frontend/package.json" }}
+          key: v1-dependency-cache-frontend-{{ checksum "frontend/package.json" }}
           paths:
             - ./frontend/node_modules
       - run:
@@ -41,7 +41,7 @@ jobs:
           paths:
             - out
 
-  deploy:
+  frontend_deploy:
     executor: my-executor
     steps:
       - add_ssh_keys:
@@ -80,17 +80,39 @@ jobs:
           command: |
             git push
 
+  backend_build:
+    executor: my-executor
+    steps:
+      - checkout
+      - run:
+          name: Update Npm
+          command: 'sudo npm install -g npm@latest'
+      - restore_cache:
+          key: v1-dependency-cache-backend-{{ checksum "backend/package.json" }}
+      - run:
+          name: Install Dependencies
+          command: cd backend && npm install
+      - save_cache:
+          key: v1-dependency-cache-backend-{{ checksum "backend/package.json" }}
+          paths:
+            - ./backend/node_modules
+      - run:
+          name: Build
+          command: 'cd backend && ./serverless package --package artifacts'
+      - store_artifacts:
+          path: ./backend/artifacts
 
 workflows:
   version: 2
 
-  build_and_deploy:
+  build_and_frontend_deploy:
     jobs:
-      - build
-      - deploy:
+      - frontend_build
+      - frontend_deploy:
           requires:
-            - build
+            - frontend_build
           filters:
             branches:
               only:
                 - master
+      - backend_build
