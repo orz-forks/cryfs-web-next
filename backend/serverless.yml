@@ -1,0 +1,33 @@
+# Welcome to serverless. Read the docs
+# https://serverless.com/framework/docs/
+
+# Serverless.yml is the configuration the CLI
+# uses to deploy your code to your provider of choice
+
+frameworkVersion: "=1.40.0"
+
+plugins:
+  - serverless-webpack
+
+# The `service` block is the name of the service
+service: cryfs-web-backend
+
+# The `provider` block defines where your service will be deployed
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+# The `functions` block defines what code to deploy
+functions:
+  newsletterRegister:
+    handler: newsletter.register
+    events:
+      - http:
+          path: newsletter/register
+          # TODO Post
+          method: get
+          # TODO Restrict cors to requests coming from cryfs.org see https://serverless.com/framework/docs/providers/aws/events/apigateway/#simple-http-endpoint
+          cors: true
+    environment:
+      MAILCHIMP_API_TOKEN: ${ssm:MAILCHIMP_API_TOKEN~true}
+      MAILCHIMP_LIST_ID: ${ssm:MAILCHIMP_LIST_ID~true}
