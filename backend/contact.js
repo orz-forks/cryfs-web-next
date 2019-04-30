@@ -3,6 +3,8 @@ import cors_headers from './cors_headers'
 
 sendgrid.setApiKey(process.env.SENDGRID_API_KEY)
 
+const token = 'iSZ9_2a5PT-U'
+
 const do_send = async (from_email, message) => {
     let msg = {
         to: 'messmer@cryfs.org',
@@ -21,8 +23,20 @@ const do_send = async (from_email, message) => {
 }
 
 export const send = async (event, context) => {
-    const params = event['queryStringParameters']
-    await do_send(params['email'], params['message'])
+    const body = JSON.parse(event['body'])
+    if (body['token'] != token) {
+        // this is not for actual security but just to prevent spam from generic bots that don't know about the token
+        return {
+            statusCode: 400,
+            headers: cors_headers,
+            body: JSON.stringify({
+                'success': false,
+                'error': 'Wrong token',
+            }),
+        }
+    }
+
+    await do_send(body['email'], body['message'])
 
     return {
         statusCode: 200,

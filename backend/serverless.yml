@@ -36,8 +36,7 @@ functions:
     events:
       - http:
           path: contact/send
-          # TODO Post
-          method: get
+          method: post
           # TODO Restrict cors to requests coming from cryfs.org see https://serverless.com/framework/docs/providers/aws/events/apigateway/#simple-http-endpoint
           cors: true
     environment:
