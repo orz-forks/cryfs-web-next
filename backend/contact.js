@@ -1,7 +1,17 @@
-import sendgrid from '@sendgrid/mail'
-import cors_headers from './cors_headers'
+"use strict";
 
-sendgrid.setApiKey(process.env.SENDGRID_API_KEY)
+import sendgrid_ from '@sendgrid/mail'
+import cors_headers from './cors_headers'
+import secret from './secret'
+import CachedValue from './cached_value'
+
+const sendgrid = new CachedValue(async () => {
+    const key = await secret('SENDGRID_API_KEY')
+    sendgrid_.setApiKey(key)
+    return sendgrid_
+})
+
+const token = 'iSZ9_2a5PT-U'
 
 const do_send = async (from_email, message) => {
     let msg = {
@@ -16,13 +26,26 @@ const do_send = async (from_email, message) => {
     if (typeof from_email != 'undefined' && from_email != '') {
         msg['reply_to'] = from_email
     }
-    await sendgrid.send(msg)
+    const sg = await sendgrid.get()
+    await sg.send(msg)
     console.log(`Sent contact email from ${from_email}: ${message}`)
 }
 
 export const send = async (event, context) => {
-    const params = event['queryStringParameters']
-    await do_send(params['email'], params['message'])
+    const body = JSON.parse(event['body'])
+    if (body['token'] != token) {
+        // this is not for actual security but just to prevent spam from generic bots that don't know about the token
+        return {
+            statusCode: 400,
+            headers: cors_headers,
+            body: JSON.stringify({
+                'success': false,
+                'error': 'Wrong token',
+            }),
+        }
+    }
+
+    await do_send(body['email'], body['message'])
 
     return {
         statusCode: 200,
