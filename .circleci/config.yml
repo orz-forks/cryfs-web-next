@@ -98,9 +98,41 @@ jobs:
             - ./backend/node_modules
       - run:
           name: Build
-          command: 'cd backend && ./serverless package --package artifacts'
+          command: 'cd backend && ./serverless package --package artifacts --stage prod'
+      - run:
+          name: Copy to Workspace
+          command: |
+            mkdir -p /tmp/workspace
+            rm -rf /tmp/workspace/artifacts
+            mv backend/artifacts /tmp/workspace
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - artifacts
       - store_artifacts:
-          path: ./backend/artifacts
+          path: /tmp/workspace/artifacts
+
+  backend_deploy:
+    executor: my-executor
+    steps:
+      - checkout
+      - run:
+          name: Update Npm
+          command: 'sudo npm install -g npm@latest'
+      - restore_cache:
+          key: v1-dependency-cache-backend-{{ checksum "backend/package.json" }}
+      - run:
+          name: Install Dependencies
+          command: cd backend && npm install
+      - save_cache:
+          key: v1-dependency-cache-backend-{{ checksum "backend/package.json" }}
+          paths:
+            - ./backend/node_modules
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Deploy
+          command: 'cd backend && ./serverless deploy --package /tmp/workspace/artifacts --stage prod --conceal'
 
 workflows:
   version: 2
@@ -116,3 +148,10 @@ workflows:
               only:
                 - master
       - backend_build
+      - backend_deploy:
+          requires:
+            - backend_build
+          filters:
+            branches:
+              only:
+                - master
