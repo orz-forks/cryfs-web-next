@@ -57,14 +57,14 @@ class NewsletterSection extends React.Component {
         const url = "https://cryfs.us12.list-manage.com/subscribe/post"
         let response = await fetch(url, {
             method: 'POST',
-            //TODO needed? headers: { 'Content-Type': 'application/json' },
-            body: {
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
                 u: "b5782cd266b5930df53c7234e",
                 id: "fee95ae90b",
                 b_b5782cd266b5930df53c7234e_fee95ae90b: "",
                 EMAIL: "",
                 subscribe: "Subscribe",
-            }
+            })
         })
         if (!response.ok) {
             throw response // TODO

@@ -1,7 +1,7 @@
 import {css, StyleSheet} from "aphrodite";
 import {Col, Collapse, Container, Form, FormGroup, Input, Label, Row} from "reactstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleDoubleRight, faSpinner} from "@fortawesome/free-solid-svg-icons";
+import {faAngleDoubleRight} from "@fortawesome/free-solid-svg-icons";
 import fetch from 'unfetch'
 import AsyncButton from '../AsyncButton'
 
@@ -47,11 +47,11 @@ class ContactSection extends React.Component {
             const response = await fetch('https://backend.cryfs.org/contact/send', {
                 method: 'POST',
                 header: {'Content-Type': 'application/json'},
-                body: {
+                body: JSON.stringify({
                     email: this.state.email,
                     message: this.state.message,
                     token: 'iSZ9_2a5PT-U',
-                },
+                }),
             })
 
             if (response.ok) {
