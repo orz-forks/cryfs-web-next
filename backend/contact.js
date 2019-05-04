@@ -32,26 +32,38 @@ const do_send = async (from_email, message) => {
 }
 
 export const send = async (event, context) => {
-    const body = JSON.parse(event['body'])
-    if (body['token'] != token) {
-        // this is not for actual security but just to prevent spam from generic bots that don't know about the token
+    try {
+        const body = JSON.parse(event['body'])
+        if (body['token'] != token) {
+            // this is not for actual security but just to prevent spam from generic bots that don't know about the token
+            return {
+                statusCode: 400,
+                headers: cors_headers,
+                body: JSON.stringify({
+                    'success': false,
+                    'error': 'Wrong token',
+                }),
+            }
+        }
+
+        await do_send(body['email'], body['message'])
+
         return {
-            statusCode: 400,
+            statusCode: 200,
+            headers: cors_headers,
+            body: JSON.stringify({
+                'success': true,
+            }),
+        }
+
+    } catch(err) {
+        return {
+            statusCode: 500,
             headers: cors_headers,
             body: JSON.stringify({
                 'success': false,
-                'error': 'Wrong token',
+                'error': JSON.stringify(err),
             }),
         }
-    }
-
-    await do_send(body['email'], body['message'])
-
-    return {
-        statusCode: 200,
-        headers: cors_headers,
-        body: JSON.stringify({
-            'success': true,
-        }),
     }
 }

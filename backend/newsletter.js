@@ -37,13 +37,25 @@ const do_register = async (email) => {
 }
 
 export const register = async (event, context) => {
-    await do_register(event['queryStringParameters']['email'])
+    try {
+        await do_register(event['queryStringParameters']['email'])
 
-    return {
-        statusCode: 200,
-        headers: cors_headers,
-        body: JSON.stringify({
-            'success': true,
-        }),
+        return {
+            statusCode: 200,
+            headers: cors_headers,
+            body: JSON.stringify({
+                'success': true,
+            }),
+        }
+
+    } catch(err) {
+        return {
+            statusCode: 500,
+            headers: cors_headers,
+            body: JSON.stringify({
+                'success': false,
+                'error': JSON.stringify(err),
+            }),
+        }
     }
 }
