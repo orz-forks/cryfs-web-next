@@ -38,7 +38,10 @@ const do_register = async (email) => {
 
 export const register = async (event, context) => {
     try {
-        await do_register(event['queryStringParameters']['email'])
+        const body = JSON.parse(event['body'])
+        const email = body['email']
+
+        await do_register(email)
 
         return {
             statusCode: 200,
@@ -49,6 +52,8 @@ export const register = async (event, context) => {
         }
 
     } catch(err) {
+        console.log(`Error registering ${email} with the newsletter. Error message: ${err}`)
+
         return {
             statusCode: 500,
             headers: cors_headers,

@@ -39,9 +39,7 @@ functions:
     events:
       - http:
           path: newsletter/register
-          # TODO Post
-          method: get
-          # TODO Restrict cors to requests coming from cryfs.org see https://serverless.com/framework/docs/providers/aws/events/apigateway/#simple-http-endpoint
+          method: post
           cors:
             origin: 'next.cryfs.org'
             allowCredentials: false
@@ -51,7 +49,6 @@ functions:
       - http:
           path: contact/send
           method: post
-          # TODO Restrict cors to requests coming from cryfs.org see https://serverless.com/framework/docs/providers/aws/events/apigateway/#simple-http-endpoint
           cors:
             origin: 'next.cryfs.org'
             allowCredentials: false

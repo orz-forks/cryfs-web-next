@@ -57,6 +57,8 @@ export const send = async (event, context) => {
         }
 
     } catch(err) {
+        console.log(`Error sending contact email from ${from_email}: ${message}. Error message: ${err}`)
+
         return {
             statusCode: 500,
             headers: cors_headers,
