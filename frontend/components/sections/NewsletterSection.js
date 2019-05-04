@@ -1,10 +1,11 @@
 "use strict";
 
 import {css, StyleSheet} from "aphrodite";
-import {Button, Collapse, Container, Form, FormGroup, Input, Label} from "reactstrap";
+import {Button, Col, Collapse, Container, Form, FormGroup, Input, Label, Row} from "reactstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDoubleRight, faSpinner} from "@fortawesome/free-solid-svg-icons";
 import fetch from 'unfetch'
+import AsyncButton from "../AsyncButton";
 
 const style = StyleSheet.create({
     notificationArea: {
@@ -29,9 +30,6 @@ const style = StyleSheet.create({
         textAlign: 'center',
         marginTop: '20px',
     },
-    registrationButton: {
-        marginLeft: '5px',
-    },
 })
 
 class NewsletterSection extends React.Component {
@@ -50,6 +48,10 @@ class NewsletterSection extends React.Component {
     }
 
     onSubmit = async () => {
+        this.setState({
+            notification: '',
+        })
+
         try {
             const response = await fetch('https://backend.cryfs.org/newsletter/register', {
                 method: 'POST',
@@ -65,13 +67,14 @@ class NewsletterSection extends React.Component {
                     notification: 'success',
                 })
             } else {
+                // TODO Handle different error cases
                 this.setState({
-                    notification: 'error',
+                    notification: 'error_unknown',
                 })
             }
         } catch (err) {
             this.setState({
-                notification: 'error',
+                notification: 'error_unknown',
             })
         }
     }
@@ -81,35 +84,35 @@ class NewsletterSection extends React.Component {
             {/*TODO Translate*/}
             <h2>Let us notify you when CryFS is stable!</h2>
             <div className={css(style.registrationBox)}>
-                <Form inline onSubmit={this.onSubmit} className="justify-content-center">
+                <Form inline className="justify-content-center">
                     <FormGroup>
                         <Label for="inputEmail" className="sr-only">Email Address:</Label>
                         <Input type="email" name="email" id="inputEmail" placeholder="Enter email" required={true}
                                autoComplete="off" value={this.state.email} onChange={this.onEmailChange} />
                     </FormGroup>
-                    <Button color="primary" className={css(style.registrationButton)}>
-                        Get Notified &nbsp;
-                        <FontAwesomeIcon icon={faAngleDoubleRight}/>
-                    </Button>
+                    <Col md={{size: '2', offset: 0}}>
+                        <FormGroup>
+                            <AsyncButton type="Submit" onClick={this.onSubmit} color="primary" block={true}>
+                                Get Notified &nbsp;
+                                <FontAwesomeIcon icon={faAngleDoubleRight}/>
+                            </AsyncButton>
+                        </FormGroup>
+                    </Col>
                 </Form>
-                <Collapse isOpen={false} className={css(style.notificationArea)}>
+                <Collapse isOpen={this.state.notification != ''} className={css(style.notificationArea)}>
                     {/*TODO Translate*/}
-                    <Collapse isOpen={false} className={`lead ${css(style.notification_success)}`}>
+                    <Collapse isOpen={this.state.notification == 'success'} className={`lead ${css(style.notification_success)}`}>
                         Thank you. You'll get a confirmation email shortly.
                     </Collapse>
-                    <Collapse isOpen={false} className={`lead ${css(style.notification_error)}`}>
+                    <Collapse isOpen={this.state.notification == 'error_invalid_email'} className={`lead ${css(style.notification_error)}`}>
                         Invalid email address.
                     </Collapse>
-                    <Collapse isOpen={false} className={`lead ${css(style.notification_error)}`}>
+                    <Collapse isOpen={this.state.notification == 'error_resubscribe'} className={`lead ${css(style.notification_error)}`}>
                         You unsubscribed before and we can't resubscribe you to protect against spam. Please send an
                         email to messmer@cryfs.org.
                     </Collapse>
-                    <Collapse isOpen={false} className={`lead ${css(style.notification_error)}`}>
+                    <Collapse isOpen={this.state.notification == 'error_unknown'} className={`lead ${css(style.notification_error)}`}>
                         An error occurred. Please subscribe by sending an email to messmer@cryfs.org.
-                    </Collapse>
-                    <Collapse isOpen={false}>
-                        <FontAwesomeIcon icon={faSpinner}
-                                         className={`${css(style.notification_spinner)} fa-pulse`}/>
                     </Collapse>
                 </Collapse>
             </div>

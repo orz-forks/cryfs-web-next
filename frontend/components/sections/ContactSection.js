@@ -92,7 +92,7 @@ class ContactSection extends React.Component {
                                     <textarea id="contact_form_message" name="message" className="form-control"
                                               style={{height: '140px'}} required={true}
                                               placeholder="Your message to us. We're looking forward to your feedback, ideas and criticism. Please be blunt."
-                                              value={this.state.message} onChange={this.setMessage} />
+                                              value={this.state.message} onChange={this.setMessage}/>
                                 </FormGroup>
                             </Col>
                             <Col md="8">
@@ -100,12 +100,12 @@ class ContactSection extends React.Component {
                                     <Label for="contact_form_email" className="sr-only">Your Email:</Label>
                                     <Input type="email" name="email" id="contact_form_email"
                                            placeholder="Your email address (optional)" autoComplete="off"
-                                           value={this.state.email} onChange={this.setEmail} />
+                                           value={this.state.email} onChange={this.setEmail}/>
                                 </FormGroup>
                             </Col>
                             <Col md={{size: '4', offset: 0}}>
                                 <FormGroup>
-                                    <AsyncButton onClick={this.send} color="primary" block={true}>
+                                    <AsyncButton type="Submit" onClick={this.send} color="primary" block={true}>
                                         Send &nbsp;
                                         <FontAwesomeIcon icon={faAngleDoubleRight}/>
                                     </AsyncButton>
@@ -113,11 +113,14 @@ class ContactSection extends React.Component {
                             </Col>
                             <div className="clearfix"/>
                             <Col md="12">
-                                <Collapse isOpen={this.state.notification != ''} className={css(formStyle.notificationArea)}>
-                                    <Collapse isOpen={this.state.notification == 'success'} className={`lead ${css(formStyle.notification_success)}`}>
+                                <Collapse isOpen={this.state.notification != ''}
+                                          className={css(formStyle.notificationArea)}>
+                                    <Collapse isOpen={this.state.notification == 'success'}
+                                              className={`lead ${css(formStyle.notification_success)}`}>
                                         Thank you.
                                     </Collapse>
-                                    <Collapse isOpen={this.state.notification == 'error'} className={`lead ${css(formStyle.notification_error)}`}>
+                                    <Collapse isOpen={this.state.notification == 'error'}
+                                              className={`lead ${css(formStyle.notification_error)}`}>
                                         Sorry, there was an error sending your message.
                                     </Collapse>
                                 </Collapse>
