@@ -26,7 +26,7 @@ export const LambdaFunction = (implementation) => (
             }
 
             const response = await implementation(body)
-            response.headers.append(cors_headers)
+            response.headers = Object.assign({}, response.headers || {}, cors_headers)
             return response
 
         } catch (err) {
