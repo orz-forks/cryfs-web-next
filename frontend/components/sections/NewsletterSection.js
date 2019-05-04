@@ -49,30 +49,31 @@ class NewsletterSection extends React.Component {
         })
     }
 
-    onSubmit = async (e) => {
-        e.preventDefault()
-        console.log('submit ')
-        console.log(this.state.email)
-
-        const url = "https://cryfs.us12.list-manage.com/subscribe/post"
-        let response = await fetch(url, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                u: "b5782cd266b5930df53c7234e",
-                id: "fee95ae90b",
-                b_b5782cd266b5930df53c7234e_fee95ae90b: "",
-                EMAIL: "",
-                subscribe: "Subscribe",
+    onSubmit = async () => {
+        try {
+            const response = await fetch('https://backend.cryfs.org/newsletter/register', {
+                method: 'POST',
+                header: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    email: this.state.email,
+                    token: 'iSZ9_2a5PT-U',
+                }),
             })
-        })
-        if (!response.ok) {
-            throw response // TODO
-        }
-        let data = await response.json()
-        console.log("success: " + data)
 
-        return false
+            if (response.ok) {
+                this.setState({
+                    notification: 'success',
+                })
+            } else {
+                this.setState({
+                    notification: 'error',
+                })
+            }
+        } catch (err) {
+            this.setState({
+                notification: 'error',
+            })
+        }
     }
 
     render = () => {

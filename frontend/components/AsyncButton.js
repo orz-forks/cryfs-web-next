@@ -18,6 +18,8 @@ class AsyncButton extends React.Component {
     }
 
     clickHandler = async (event) => {
+        event.preventDefault()
+
         if (this.state.running) {
             // Already running. Somehow it got triggered twice. Ignore it.
             console.log("Button onClick handler already running. Ignore second trigger.")

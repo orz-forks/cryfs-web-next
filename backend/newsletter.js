@@ -1,9 +1,9 @@
 "use strict";
 
 import Mailchimp from 'mailchimp-api-v3'
-import cors_headers from './cors_headers'
 import secret from './secret'
 import CachedValue from './cached_value'
+import {LambdaFunction} from './lambda_function'
 
 const mailchimp = new CachedValue(async () => {
     const list_id = await secret('MAILCHIMP_LIST_ID')
@@ -36,30 +36,13 @@ const do_register = async (email) => {
     }
 }
 
-export const register = async (event, context) => {
-    try {
-        const body = JSON.parse(event['body'])
-        const email = body['email']
+export const register = LambdaFunction(async (body) => {
+    await do_register(body['email'])
 
-        await do_register(email)
-
-        return {
-            statusCode: 200,
-            headers: cors_headers,
-            body: JSON.stringify({
-                'success': true,
-            }),
-        }
-
-    } catch(err) {
-        console.log(`Error registering ${email} with the newsletter. Error message: ${err}`)
-
-        return {
-            statusCode: 500,
-            headers: cors_headers,
-            body: JSON.stringify({
-                'success': false,
-            }),
-        }
+    return {
+        statusCode: 200,
+        body: JSON.stringify({
+            'success': true,
+        }),
     }
-}
+})
