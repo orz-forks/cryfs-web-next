@@ -54,7 +54,6 @@ export const register = async (event, context) => {
             headers: cors_headers,
             body: JSON.stringify({
                 'success': false,
-                'error': JSON.stringify(err),
             }),
         }
     }
