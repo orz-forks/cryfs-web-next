@@ -23,7 +23,7 @@ const do_send = async (from_email, message) => {
         subject: `CryFS Contact Form (from ${from_email})`,
         text: message,
     }
-    if (typeof from_email != 'undefined' && from_email != '') {
+    if (typeof from_email != 'undefined' && from_email !== '') {
         msg['reply_to'] = from_email
     }
     const sg = await sendgrid.get()
@@ -34,7 +34,7 @@ const do_send = async (from_email, message) => {
 export const send = async (event, context) => {
     try {
         const body = JSON.parse(event['body'])
-        if (body['token'] != token) {
+        if (body['token'] !== token) {
             // this is not for actual security but just to prevent spam from generic bots that don't know about the token
             return {
                 statusCode: 400,

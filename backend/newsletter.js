@@ -27,7 +27,7 @@ const do_register = async (email) => {
         console.log(`Registered ${email} with newsletter`)
     } catch (err) {
         // ignore error due to "member already exists" but rethrow other errors
-        if (err['title'] != 'Member Exists') {
+        if (err['title'] !== 'Member Exists') {
             console.log(JSON.stringify(err))
             throw(err)
         } else {
