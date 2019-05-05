@@ -1,5 +1,7 @@
 "use strict";
 
+import {email_myself} from './email_myself'
+
 const token = 'iSZ9_2a5PT-U'
 
 const cors_headers = {
@@ -31,6 +33,7 @@ export const LambdaFunction = (implementation) => (
 
         } catch (err) {
             console.log(`Error calling function with event ${event}. Error message: ${err}`)
+            await email_myself("CryFS Backend", "Error", `Error calling function with event ${event}. Error message: ${err}`)
 
             return {
                 statusCode: 500,
