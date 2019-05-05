@@ -32,8 +32,8 @@ export const LambdaFunction = (implementation) => (
             return response
 
         } catch (err) {
-            console.log(`Error calling function with event ${event}. Error message: ${err}`)
-            await email_myself("CryFS Backend", "Error", `Error calling function with event ${event}. Error message: ${err}`)
+            console.log(`Error calling function. Error message: ${err}. Event: ${JSON.stringify(event)}`)
+            await email_myself("CryFS Backend", "Error", `Error calling function. Error message: ${err}. Event: ${JSON.stringify(event)}`)
 
             return {
                 statusCode: 500,
