@@ -1,6 +1,6 @@
 "use strict";
 
-import {email_myself} from './email_myself'
+import {email_myself} from './email'
 
 const token = 'iSZ9_2a5PT-U'
 
