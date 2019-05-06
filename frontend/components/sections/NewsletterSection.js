@@ -120,7 +120,7 @@ class NewsletterSection extends React.Component {
                         Invalid email address.
                     </Collapse>
                     <Collapse isOpen={this.state.notification == 'error_unsubscribed'} className={`lead ${css(style.notification_error)}`}>
-                        You unsubscribed before and we can't resubscribe you to protect against spam. Please send an
+                        You've unsubscribed before and we can't resubscribe you to protect against spam. Please send an
                         email to messmer@cryfs.org.
                     </Collapse>
                     <Collapse isOpen={this.state.notification == 'error_unknown'} className={`lead ${css(style.notification_error)}`}>
