@@ -67,12 +67,8 @@ class NewsletterSection extends React.Component {
                     notification: 'success',
                 })
             } else {
-                console.log(`response: ${response}`)
-                console.log(`json1: ${response.json}`)
-                console.log(`json2: ${response.json()}`)
-                console.log(`error1: ${response.json().error}`)
-                console.log(`error2: ${response.json()['error']}`)
-                const reason = response.json()['error']
+                const body = await response.json()
+                const reason = body['error']
                 if (reason === 'invalid-email') {
                     this.setState({
                         notification: 'error_invalid_email',
