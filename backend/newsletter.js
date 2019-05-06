@@ -38,6 +38,13 @@ const response_error_unsubscribed = {
     }),
 }
 
+const response_error_unknown = {
+    statusCode: 500,
+    body: JSON.stringify({
+        'success': false,
+    }),
+}
+
 const do_register = async (email) => {
     const mc = await mailchimp.get()
     try {
@@ -70,7 +77,7 @@ const do_register = async (email) => {
         } else {
             console.log(`Didn't register ${email} with newsletter because of an error: ${JSON.stringify(err)}`)
             await email_myself("CryFS Newsletter Registration", "Error registering user", `Didn't register ${email} with newsletter because of an error: ${JSON.stringify(err)}`)
-            throw(err)
+            return response_error_unknown
         }
     }
 }
