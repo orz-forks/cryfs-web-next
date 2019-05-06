@@ -63,12 +63,12 @@ const do_register = async (email) => {
         // ignore error due to "member already exists" but rethrow other errors
         if (err['title'] === 'Member Exists') {
             console.log(`Didn't register ${email} because it is already registered`)
-            await email_myself("CryFS Newsletter Registration", "New interested user (Already exists)", `Didn't register ${email} with newsletter because it already exists`)
+            await email_myself("CryFS Newsletter Registration", "New interested user (not adding - already exists)", `Didn't register ${email} with newsletter because it already exists`)
             // returning success so attackers can't see if an email address is already on the newsletter or not.
             return response_success
         } else if (err['title'] === 'Invalid Resource') {
             console.log(`Didn't register ${email} because it is an invalid email address`)
-            await email_myself("CryFS Newsletter Registration", "New interested user (not adding - previously unsubscribed)", `Didn't register ${email} with newsletter because it is an invalid email address`)
+            await email_myself("CryFS Newsletter Registration", "New interested user (not adding - invalid email)", `Didn't register ${email} with newsletter because it is an invalid email address`)
             return response_error_invalid_email
         } else if (err['title'] === 'Forgotten Email Not Subscribed') {
             console.log(`Didn't register ${email} because it was previously unsubscribed`)
