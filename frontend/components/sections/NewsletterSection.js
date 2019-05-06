@@ -67,10 +67,21 @@ class NewsletterSection extends React.Component {
                     notification: 'success',
                 })
             } else {
-                // TODO Handle different error cases
-                this.setState({
-                    notification: 'error_unknown',
-                })
+                const reason = response.json()['error']
+                if (reason === 'invalid-email') {
+                    this.setState({
+                        notification: 'error_invalid_email',
+                    })
+                } else if (reason === 'unsubscribed') {
+                    this.setState({
+                        notification: 'error_unsubscribed',
+                    })
+                } else {
+                    console.log(`Unknown error response: ${reason}`)
+                    this.setState({
+                        notification: 'error_unknown',
+                    })
+                }
             }
         } catch (err) {
             this.setState({
@@ -107,7 +118,7 @@ class NewsletterSection extends React.Component {
                     <Collapse isOpen={this.state.notification == 'error_invalid_email'} className={`lead ${css(style.notification_error)}`}>
                         Invalid email address.
                     </Collapse>
-                    <Collapse isOpen={this.state.notification == 'error_resubscribe'} className={`lead ${css(style.notification_error)}`}>
+                    <Collapse isOpen={this.state.notification == 'error_unsubscribed'} className={`lead ${css(style.notification_error)}`}>
                         You unsubscribed before and we can't resubscribe you to protect against spam. Please send an
                         email to messmer@cryfs.org.
                     </Collapse>
