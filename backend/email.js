@@ -20,7 +20,7 @@ export const email_myself = async (from, subject, message, reply_to = undefined)
         subject: subject,
         text: message,
     }
-    if (typeof reply_to != 'undefined') {
+    if (typeof reply_to !== 'undefined' && reply_to !== '') {
         msg['reply_to'] = reply_to
     }
     const sg = await sendgrid.get()
