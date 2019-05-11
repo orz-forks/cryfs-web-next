@@ -55,12 +55,7 @@ const do_register = async (email) => {
                 status: 'pending', // Pending means mailchimp sends a confirmation email
             },
         })
-        await email_myself("CryFS Newsletter Registration", "New interested user", `Registered ${email} with newsletter`)
-        console.log(`Registered ${email} with newsletter`)
-
-        return response_success
     } catch (err) {
-        // ignore error due to "member already exists" but rethrow other errors
         if (err['title'] === 'Member Exists') {
             console.log(`Didn't register ${email} because it is already registered`)
             await email_myself("CryFS Newsletter Registration", "New interested user (not adding - already exists)", `Didn't register ${email} with newsletter because it already exists`)
@@ -80,6 +75,11 @@ const do_register = async (email) => {
             return response_error_unknown
         }
     }
+
+    await email_myself("CryFS Newsletter Registration", "New interested user", `Registered ${email} with newsletter`)
+    console.log(`Registered ${email} with newsletter`)
+
+    return response_success
 }
 
 export const register = LambdaFunction(async (body) => {
