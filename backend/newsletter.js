@@ -52,7 +52,7 @@ const do_register = async (email) => {
             path: `/lists/${mc.list_id}/members`,
             body: {
                 email_address: email,
-                status: 'subscribed',
+                status: 'pending', // Pending means mailchimp sends a confirmation email
             },
         })
         await email_myself("CryFS Newsletter Registration", "New interested user", `Registered ${email} with newsletter`)
