@@ -2,6 +2,7 @@
 
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { StyleSheetServer } from 'aphrodite/no-important'
+import { GoogleAnalyticsSetup, FacebookAppId } from '../components/Analytics'
 
 // TODO Do we need CSRF tags?
 
@@ -29,7 +30,7 @@ class MyDocument extends Document {
             <Html lang={"en"}>
                 <Head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
                     <meta name="author" content="Sebastian Messmer" />
-                    <meta property="fb:app_id" content="464697373705005" />
+                    <meta property="fb:app_id" content={FacebookAppId} />
                     <meta property="og:site_name" content="CryFS" />
                     <meta property="og:locale" content="en_US" />
                     {/* Make sure to use data-aphrodite attribute in the style tag here
@@ -40,6 +41,7 @@ class MyDocument extends Document {
                         data-aphrodite
                         dangerouslySetInnerHTML={{ __html: this.props.css.content }}
                     />
+                    <GoogleAnalyticsSetup />
                 </Head>
                 <body>
                     <div id="fb-root" />
