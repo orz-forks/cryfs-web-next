@@ -96,7 +96,7 @@ const do_register = async (email) => {
             }
         } else if (err['title'] === 'Invalid Resource') {
             console.log(`Didn't register ${email} because it is an invalid email address`)
-            await email_myself("CryFS Newsletter Registration", "New interested user (not adding - invalid email)", `Didn't register ${email} with newsletter because it is an invalid email address`)
+            await email_myself("CryFS Newsletter Registration", "New interested user (not adding - invalid email)", `Didn't register ${email} with newsletter because it is an invalid email address. Error message:\n\n${JSON.stringify(err)}`)
             return response_error_invalid_email
         } else if (err['title'] === 'Forgotten Email Not Subscribed') {
             console.log(`Didn't register ${email} because it was previously unsubscribed`)
