@@ -9,12 +9,12 @@ export const FacebookAppId = "464697373705005"
 export const GoogleAnalyticsSetup = () => (
 	<>
 		<script async src={`https://www.googletagmanager.com/gtag/js?id=${google_analytics_id}`}></script>
-		<script dangerouslySetInnerHTML={{ __html: `
-		  window.dataLayer = window.dataLayer || [];
-		  window.gtag = function(){dataLayer.push(arguments);}
-		  window.gtag('js', new Date());
-		  window.gtag('config', '${google_analytics_id}');
-		` }} />
+		<script dangerouslySetInnerHTML={{ __html: (
+		  `window.dataLayer = window.dataLayer || [];` +
+		  `window.gtag = function(){dataLayer.push(arguments);};` +
+		  `window.gtag('js', new Date());` +
+		  `window.gtag('config', '${google_analytics_id}');`
+		) }} />
 	</>
 )
 
