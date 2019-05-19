@@ -1,3 +1,5 @@
+"use strict";
+
 import { StyleSheet, css } from 'aphrodite/no-important'
 import {Table} from 'reactstrap'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

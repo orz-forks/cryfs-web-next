@@ -1,3 +1,5 @@
+"use strict";
+
 import {css, StyleSheet} from "aphrodite";
 import {Col, Collapse, Container, Form, FormGroup, Input, Label, Row} from "reactstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";

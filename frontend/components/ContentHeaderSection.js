@@ -1,3 +1,5 @@
+"use strict";
+
 import {Container} from 'reactstrap'
 import { StyleSheet, css } from 'aphrodite/no-important'
 
