@@ -3,6 +3,8 @@
 import React from 'react'
 import Head from 'next/head'
 
+// TODO Client side routing should log page views
+
 const google_analytics_id = "UA-65863982-1"
 const google_analytics_init = (
 	`window.dataLayer = window.dataLayer || [];` +

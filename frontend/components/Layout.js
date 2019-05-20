@@ -16,7 +16,7 @@ import {
     NavItem,
     NavLink} from 'reactstrap';
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { GoogleAnalyticsSetup } from '../components/Analytics'
+import { GoogleAnalyticsSetup } from '../components/GoogleAnalytics'
 import { FacebookRoot, FacebookLikeButton } from '../components/Facebook'
 
 if (typeof window !== 'undefined') {
