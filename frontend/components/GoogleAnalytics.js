@@ -18,7 +18,7 @@ export const logGoogleAnalyticsEvent = (category, action) => {
 }
 
 export const logGoogleAnalyticsPageview = (path) => {
-	window.gtag('config', '${google_analytics_id}', {
+	window.gtag('config', google_analytics_id, {
 		'page_path': path,
 	})
 	window.gtag('event', 'page_view')

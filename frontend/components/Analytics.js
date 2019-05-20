@@ -19,8 +19,8 @@ class AnalyticsSetup_ extends React.Component {
 
     onRouteChangeComplete = async (url) => {
         // Log page view
-        console.log("Log page view " + url)
         // TODO For some reason, this logs two page views on modal close
+        // TODO This logs the correct page url but the old page title because page title updates are too slow
         logGoogleAnalyticsPageview(url)
         await logFacebookPageview()
     }
