@@ -16,6 +16,8 @@ import {
     NavItem,
     NavLink} from 'reactstrap';
 import { StyleSheet, css } from 'aphrodite/no-important'
+import { GoogleAnalyticsSetup } from '../components/Analytics'
+import { FacebookRoot, FacebookLikeButton } from '../components/Facebook'
 
 if (typeof window !== 'undefined') {
     /* StyleSheet.rehydrate takes an array of rendered classnames,
@@ -123,8 +125,7 @@ const Footer = props => (
                     <Col md="8">Copyright © 2016-present &mdash; Sebastian Messmer</Col>
                     <Col md="2">
                         {/*TODO Change to data-layout="button_count", once we have some likes*/}
-                        <div id="fb-like"
-                             className="fb-like"
+                        <FacebookLikeButton
                              data-href="https://www.facebook.com/cryfs.org"
                              data-width="200"
                              data-layout="button"
@@ -151,6 +152,8 @@ export default (props) => (
             <link rel="shortcut icon" type="image/png" href={require("../assets/images/favicon.png")} />
             <link rel="apple-touch-icon" type="image/png" href={require("../assets/images/favicon.png")} />
         </Head>
+        <FacebookRoot /> { /* FacebookRoot must be in Layout and not in _document because otherwise componentDidMount isn't executed */ }
+        <GoogleAnalyticsSetup /> { /* GoogleAnalyticsSetup must be in Layout and not in _document because otherwise componentDidMount isn't executed */ }
         <MyNavBar />
         <GithubRibbon />
         {props.children}

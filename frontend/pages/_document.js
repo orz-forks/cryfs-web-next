@@ -2,12 +2,12 @@
 
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { StyleSheetServer } from 'aphrodite/no-important'
-import { GoogleAnalyticsSetup, FacebookAppId } from '../components/Analytics'
+import { FacebookAppId } from '../components/Facebook'
 
 // TODO Do we need CSRF tags?
 
 class MyDocument extends Document {
-    static async getInitialProps ({ renderPage }) {
+    static getInitialProps = async ({ renderPage }) => {
         const { html, css } = StyleSheetServer.renderStatic(() => renderPage())
         const ids = css.renderedClassNames
         return { ...html, css, ids }
@@ -24,7 +24,7 @@ class MyDocument extends Document {
         }
     }
 
-    render() {
+    render = () => {
         return (
             // TODO The lang attribute in the html tag and the og:locale tag should be based on the actual chosen language
             <Html lang={"en"}>
@@ -41,10 +41,8 @@ class MyDocument extends Document {
                         data-aphrodite
                         dangerouslySetInnerHTML={{ __html: this.props.css.content }}
                     />
-                    <GoogleAnalyticsSetup />
                 </Head>
                 <body>
-                    <div id="fb-root" />
                     <Main />
                     <NextScript />
                 </body>
