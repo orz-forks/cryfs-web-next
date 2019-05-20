@@ -16,7 +16,7 @@ import {
     NavItem,
     NavLink} from 'reactstrap';
 import { StyleSheet, css } from 'aphrodite/no-important'
-import { GoogleAnalyticsSetup } from '../components/GoogleAnalytics'
+import { AnalyticsSetup } from '../components/Analytics'
 import { FacebookRoot, FacebookLikeButton } from '../components/Facebook'
 
 if (typeof window !== 'undefined') {
@@ -153,7 +153,7 @@ export default (props) => (
             <link rel="apple-touch-icon" type="image/png" href={require("../assets/images/favicon.png")} />
         </Head>
         <FacebookRoot /> { /* FacebookRoot must be in Layout and not in _document because otherwise componentDidMount isn't executed */ }
-        <GoogleAnalyticsSetup /> { /* GoogleAnalyticsSetup must be in Layout and not in _document because otherwise componentDidMount isn't executed */ }
+        <AnalyticsSetup /> { /* AnalyticsSetup must be in Layout and not in _document because otherwise componentDidMount isn't executed */ }
         <MyNavBar />
         <GithubRibbon />
         {props.children}

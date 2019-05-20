@@ -21,10 +21,12 @@ export class RoutingListener {
         this.onChangeCallbacks.push(func)
     }
 
-    onRouteChangeComplete = (url) => {
+    onRouteChangeComplete = async (url) => {
         this.url = url
-        for (let callback of this.onChangeCallbacks) {
+
+        const promises = this.onChangeCallbacks.map(async (callback) => {
             callback(this.url)
-        }
+        })
+        await Promise.all(promises)
     }
 }

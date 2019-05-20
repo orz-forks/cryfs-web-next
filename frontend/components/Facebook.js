@@ -3,7 +3,7 @@
 import ReactDOM from 'react-dom'
 import defer from './Defer'
 import { promiseWithTimeout } from './Timeout'
-import { sendGoogleAnalyticsEvent } from './GoogleAnalytics'
+import { logGoogleAnalyticsEvent } from './GoogleAnalytics'
 
 export const FacebookAppId = "464697373705005"
 
@@ -16,9 +16,14 @@ export const FacebookAPI = async () => {
     return await promiseWithTimeout(api.promise, 10000)
 }
 
+export const logFacebookPageview = async () => {
+    const fb = await FacebookAPI()
+    fb.AppEvents.logPageView()
+}
+
 const setupAnalyticsTracking = (fb) => {
     fb.Event.subscribe('edge.create', () => {
-        sendGoogleAnalyticsEvent('fb', 'like')
+        logGoogleAnalyticsEvent('fb', 'like')
     })
     fb.Event.subscribe('edge.remove', () => {
         sendGoogleAnalyticsEvent('fb', 'unlike')
