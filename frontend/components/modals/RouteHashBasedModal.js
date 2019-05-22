@@ -18,7 +18,6 @@ class RouteHashBasedModal extends React.Component {
     }
 
     toggle = () => {
-        console.log('toggle')
         this.setState(prevState => ({
             show: !prevState.show
         }))
@@ -34,7 +33,6 @@ class RouteHashBasedModal extends React.Component {
     // TODO Analytics events for showing/hiding download and donation modal
 
     componentDidUpdate = () => {
-        console.log('update to ' + this.state.show)
         // If toggle() was called, the url wasn't updated yet.
         // We need to make sure the URL gets updated.
 
