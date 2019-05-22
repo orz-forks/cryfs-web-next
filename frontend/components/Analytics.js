@@ -1,9 +1,14 @@
 "use strict";
 
-import { GoogleAnalyticsRoot, logGoogleAnalyticsPageview } from './GoogleAnalytics'
-import { logFacebookPageview } from './Facebook'
+import { GoogleAnalyticsRoot, logGoogleAnalyticsPageview, logGoogleAnalyticsEvent } from './GoogleAnalytics'
+import { logFacebookPageview, logFacebookEvent } from './Facebook'
 import {RoutingListener} from "./RoutingListener";
 import {withRouter} from "next/dist/client/router";
+
+export const logAnalyticsEvent = async (category, action) => {
+    logGoogleAnalyticsEvent(category, action)
+    await logFacebookEvent(`${category}__${action}`)
+}
 
 class AnalyticsSetup_ extends React.Component {
     constructor(props) {

@@ -1,11 +1,12 @@
 "use strict";
 
 import {css, StyleSheet} from "aphrodite";
-import {Button, Col, Collapse, Container, Form, FormGroup, Input, Label, Row} from "reactstrap";
+import {Col, Collapse, Container, Form, FormGroup, Input, Label} from "reactstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleDoubleRight, faSpinner} from "@fortawesome/free-solid-svg-icons";
+import {faAngleDoubleRight} from "@fortawesome/free-solid-svg-icons";
 import fetch from 'unfetch'
 import AsyncButton from "../AsyncButton";
+import {logAnalyticsEvent} from '../Analytics'
 
 const style = StyleSheet.create({
     notificationArea: {
@@ -52,6 +53,8 @@ class NewsletterSection extends React.Component {
             notification: '',
         })
 
+        await logAnalyticsEvent('interested_user_form', 'click')
+
         try {
             const response = await fetch('https://backend.cryfs.org/newsletter/register', {
                 method: 'POST',
@@ -63,10 +66,12 @@ class NewsletterSection extends React.Component {
             })
 
             if (response.ok) {
+                await logAnalyticsEvent('interested_user_form', 'success')
                 this.setState({
                     notification: 'success',
                 })
             } else {
+                await logAnalyticsEvent('interested_user_form', 'error')
                 const body = await response.json()
                 const reason = body['error']
                 if (reason === 'invalid-email') {

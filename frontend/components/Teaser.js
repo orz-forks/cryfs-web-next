@@ -3,6 +3,7 @@
 import {css, StyleSheet} from "aphrodite";
 import {Button} from "reactstrap";
 import Link from "next/link";
+import {logAnalyticsEvent} from './Analytics'
 
 const teaser_width = 5308
 const teaser_height = 2636
@@ -85,6 +86,14 @@ const tutorialBtnStyle = StyleSheet.create({
 const teaser_header = "Keep your data safe in the cloud"
 const teaser_paragraph1 = "CryFS encrypts your files, so you can safely store them anywhere. It works well together with cloud services like Dropbox, iCloud, OneDrive and others."
 
+const onDownloadButtonClick = async () => {
+    await logAnalyticsEvent('buttons', 'click_download_button')
+}
+
+const onTutorialButtonClick = async () => {
+    await logAnalyticsEvent('buttons', 'click_tutorial_button')
+}
+
 export default () => (
     <>
         <section className={`${css(mdStyle.teaser)} d-none d-lg-block`}>
@@ -97,10 +106,10 @@ export default () => (
                         <p className={css(mdStyle.title_text_p)}>{teaser_paragraph1}</p>
                         <p className={css(mdStyle.title_text_p)}>
                             <Link href="/#download">
-                                <Button color="primary" size="lg">Download(beta)</Button>
+                                <Button color="primary" size="lg" onClick={onDownloadButtonClick}>Download(beta)</Button>
                             </Link>
                             <Link href="/tutorial">
-                                <Button color="info" size="lg" className={css(tutorialBtnStyle.button)}>Tutorial</Button>
+                                <Button color="info" size="lg" className={css(tutorialBtnStyle.button)} onClick={onTutorialButtonClick}>Tutorial</Button>
                             </Link>
                         </p>
                     </div>

@@ -16,6 +16,11 @@ export const FacebookAPI = async () => {
     return await promiseWithTimeout(api.promise, 10000)
 }
 
+export const logFacebookEvent= async (event) => {
+    const fb = await FacebookAPI()
+    fb.AppEvents.logEvent(event)
+}
+
 export const logFacebookPageview = async () => {
     const fb = await FacebookAPI()
     fb.AppEvents.logPageView()

@@ -6,6 +6,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAngleDoubleRight} from "@fortawesome/free-solid-svg-icons";
 import fetch from 'unfetch'
 import AsyncButton from '../AsyncButton'
+import {logAnalyticsEvent} from '../Analytics'
 
 const formStyle = StyleSheet.create({
     notificationArea: {
@@ -45,6 +46,8 @@ class ContactSection extends React.Component {
             notification: '',
         })
 
+        await logAnalyticsEvent('contact_form', 'click')
+
         try {
             const response = await fetch('https://backend.cryfs.org/contact/send', {
                 method: 'POST',
@@ -57,10 +60,12 @@ class ContactSection extends React.Component {
             })
 
             if (response.ok) {
+                await logAnalyticsEvent('contact_form', 'success')
                 this.setState({
                     notification: 'success',
                 })
             } else {
+                await logAnalyticsEvent('contact_form', 'error')
                 this.setState({
                     notification: 'error',
                 })

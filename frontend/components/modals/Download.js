@@ -10,6 +10,7 @@ import UbuntuLogo from '../../assets/images/ubuntu.png'
 import DebianLogo from '../../assets/images/debian.png'
 import OtherLogo from '../../assets/images/other_os.png'
 import classnames from 'classnames'
+import {logAnalyticsEvent} from '../Analytics'
 
 const style = StyleSheet.create({
     tabHeader: {
@@ -41,7 +42,9 @@ class Tabs extends React.Component {
         }
     }
 
-    toggle = (tabIndex) => {
+    toggle = async (tabIndex) => {
+        const tab_analytics_name = this.props.tabs()[tabIndex].analytics_name
+        await logAnalyticsEvent('download', `click_${tab_analytics_name}_tab`)
         if (this.state.activeTab !== tabIndex) {
             this.setState({
                 activeTab: tabIndex
@@ -59,7 +62,7 @@ class Tabs extends React.Component {
                 <Col md="4" key={index}>
                     <NavItem className={css(style.tabHeader)}>
                         <NavLink className={classnames({active: this.state.activeTab === index})}
-                                 onClick={() => {this.toggle(index)}}>
+                                 onClick={async () => {await this.toggle(index)}}>
                             {tab.header}
                         </NavLink>
                     </NavItem>
@@ -94,6 +97,7 @@ class Tabs extends React.Component {
 
 const tabs = () => [
     {
+        analytics_name: 'ubuntu',
         header: (
             <Row className={css(style.osBox)}>
                 <Col md="12">
@@ -103,7 +107,7 @@ const tabs = () => [
                     Ubuntu
                 </Col>
             </Row>),
-        body:(
+        body: (
             <>
                 <h3>Easy Install</h3>
                 <p>For Ubuntu 17.04 and later</p>
@@ -121,6 +125,7 @@ const tabs = () => [
         )
     },
     {
+        analytics_name: 'debian',
         header: (
             <Row className={css(style.osBox)}>
                 <Col md="12">
@@ -148,6 +153,7 @@ const tabs = () => [
         )
     },
     {
+        analytics_name: 'other',
         header: (
             <Row className={css(style.osBox)}>
                 <Col md="12">
