@@ -41,8 +41,6 @@ class RouteHashBasedModal extends React.Component {
         })
     }
 
-    // TODO Analytics events for showing/hiding download and donation modal
-
     componentWillUnmount = () => {
         this.routingListener.finish()
     }

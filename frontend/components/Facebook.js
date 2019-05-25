@@ -9,8 +9,6 @@ export const FacebookAppId = "464697373705005"
 
 const debug = false
 
-// TODO Facebook Event logging
-
 const api = defer()
 export const FacebookAPI = async () => {
     return await promiseWithTimeout(api.promise, 10000)
