@@ -18,9 +18,20 @@ class RouteHashBasedModal extends React.Component {
     }
 
     toggle = () => {
-        this.setState(prevState => ({
-            show: !prevState.show
-        }))
+        // When we're supposed to toggle it, we just change the URL.
+        // The routing listener will then trigger onRouteChangeComplete,
+        // which will take care of the actual showing/hiding of the modal.
+        if (this.state.show) {
+            const url = new Url(this.routingListener.url)
+            url.set('hash', '')
+            const newUrl = url.toString()
+            this.props.router.replace(newUrl)
+        } else {
+            const url = new Url(this.routingListener.url)
+            url.set('hash', this.props.hash)
+            const newUrl = url.toString()
+            this.props.router.replace(newUrl)
+        }
     }
 
     onRouteChangeComplete = (url) => {
@@ -31,23 +42,6 @@ class RouteHashBasedModal extends React.Component {
     }
 
     // TODO Analytics events for showing/hiding download and donation modal
-
-    componentDidUpdate = () => {
-        // If toggle() was called, the url wasn't updated yet.
-        // We need to make sure the URL gets updated.
-
-        const url = new Url(this.routingListener.url)
-        const url_has_flag = url.hash == this.props.hash
-        if (url_has_flag && !this.state.show) {
-            url.set('hash', '')
-            const newUrl = url.toString()
-            this.props.router.replace(newUrl)
-        } else if (!url_has_flag && this.state.show) {
-            url.set('hash', this.props.hash)
-            const newUrl = url.toString()
-            this.props.router.replace(newUrl)
-        }
-    }
 
     componentWillUnmount = () => {
         this.routingListener.finish()
