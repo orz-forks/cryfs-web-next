@@ -41,7 +41,7 @@ functions:
           path: newsletter/register
           method: post
           cors:
-            origin: 'next.cryfs.org'
+            origin: 'www.cryfs.org'
             allowCredentials: false
   contactSend:
     handler: contact.send
@@ -50,5 +50,5 @@ functions:
           path: contact/send
           method: post
           cors:
-            origin: 'next.cryfs.org'
+            origin: 'www.cryfs.org'
             allowCredentials: false

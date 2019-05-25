@@ -5,7 +5,7 @@ import {email_myself} from './email'
 const token = 'iSZ9_2a5PT-U'
 
 const cors_headers = {
-    'Access-Control-Allow-Origin': 'https://next.cryfs.org',
+    'Access-Control-Allow-Origin': 'https://www.cryfs.org',
     'Access-Control-Allow-Credentials': false,
     'Vary': 'Origin',
 }
