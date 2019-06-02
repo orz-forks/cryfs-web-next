@@ -5,6 +5,8 @@ import { logFacebookPageview, logFacebookEvent } from './Facebook'
 import {RoutingListener} from "./RoutingListener";
 import {withRouter} from "next/dist/client/router";
 
+// TODO Log copying the download instruction command (and check we didn't miss any other events from the old Ruby implementation)
+
 export const logAnalyticsEvent = async (category, action) => {
     logGoogleAnalyticsEvent(category, action)
     await logFacebookEvent(`${category}__${action}`)
