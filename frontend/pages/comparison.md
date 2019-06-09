@@ -6,6 +6,7 @@ import MetaTags from '../components/MetaTags'
 import Link from 'next/link'
 import ComparisonImg from '../assets/images/comparison.png'
 import VeraCryptImg from '../assets/images/veracrypt.png'
+import GocryptfsImg from '../assets/images/gocryptfs.png'
 import EncfsImg from '../assets/images/encfs.jpg'
 import ECryptFsImg from '../assets/images/ecryptfs.png'
 import CryFsImg from '../assets/images/teaser_small.jpg'
@@ -121,31 +122,31 @@ So VeraCrypt is a good choice if you are only encrypting your files locally and 
 
 </Container>
 </section>
-<section id="encfs">
+<section id="gocryptfs">
 <Container>
 
-## EncFS
+## gocryptfs
 
 <Row>
 <Col md="6">
 
-[EncFS](https://vgough.github.io/encfs/) was my tool of choice for an encrypted Dropbox for quite some time.
-It doesn't support Windows (only Linux and Mac), but that might be enough for some users, and there are third party clients for Windows
-([encfsmp](http://encfsmp.sourceforge.net/), [encfs4win](http://members.ferrara.linux.it/freddy77/encfs.html)).
-Like VeraCrypt, it offers you a virtual filesystem, so you don't notice the encryption which is happening in the background.
-As opposed to TrueCrypt, it doesn't store your files in one big container file, but encrypts your files individually.
+[Gocryptfs](https://nuetzlich.net/gocryptfs/), like VeraCrypt, offers you a virtual filesystem, so the encryption is happening
+in the background and doesn't interfere with your workflows.
+It doesn't support Windows (only Linux and Mac), but that might be enough for some users, and there is a third party client for Windows
+([cppcryptfs](https://github.com/bailey27/cppcryptfs)).
+As opposed to VeraCrypt, it doesn't store your files in one big container file, but encrypts your files individually.
 For each of your files, there is an encrypted version in your Dropbox.
 This solves the problem we described for VeraCrypt.
-When you change a small file, only that small file has to be re-uploaded and when you modify different files on different
-computers at the same time, they modify different encrypted files in the Dropbox and the Dropbox client is able to
-handle that.
 
 </Col>
 <Col md="6">
-<img src={EncfsImg} alt="EncFS" className={css(style.image)} />
+<img src={GocryptfsImg} alt="Gocryptfs" className={css(style.image)} />
 </Col>
 </Row>
 
+When you change a small file, only that small file has to be re-uploaded and when you modify different files on different
+computers at the same time, they modify different encrypted files in the Dropbox and the Dropbox client is able to
+handle that.
 However, that is also a disadvantage.
 Since there is an encrypted file for each of your files, a hacker can exactly see how many files you have, how
 large each file is and how they are structured into directories.
@@ -156,7 +157,45 @@ Or say you store an illegal copy of a current Windows installation CD (not that 
 the police could ask your cloud provider to hand over your encrypted files and they could analyze them.
 When the number of files, file sizes and directory structure match the CD, they know you're storing it.
 The same thing is also an issue for [watermarking attacks](https://en.wikipedia.org/wiki/Watermarking_attack), which we will not explain in detail here.
-There are [alternatives](https://www.cryfs.org) to EncFS that are not vulnerable to these attacks and also hide your file sizes, metadata and directory structure.
+There are [alternatives](https://www.cryfs.org) to gocryptfs that are not vulnerable to these attacks and also hide your file sizes, metadata and directory structure.
+
+Gocryptfs uses GCM cipher mode. This means it doesn't only protect confidentiality, i.e. against adversaries reading your files,
+but also integrity, i.e. against adversaries modifying your files without you noticing it.
+The same restriction mentioned for confidentiality also applies for integrity though. It only ensures that the file contents you're reading were at some point written by you.
+Attackers can change directory structure, add or delete files or folders, re-add files deleted earlier by you, replace files with earlier versions of themselves
+or replace their content with the content of other files, or earlier versions of those other files, and you wouldn't necessarily notice any of that.
+The [alternatives](https://www.cryfs.org) mentioned above do also protect against these kinds of attack.
+
+
+</Container>
+</section>
+<section id="encfs">
+<Container>
+
+## EncFS
+
+<Row>
+<Col md="6">
+<img src={EncfsImg} alt="EncFS" className={css(style.image)} />
+</Col>
+<Col md="6">
+
+[EncFS](https://vgough.github.io/encfs/) was my tool of choice for an encrypted Dropbox for quite some time.
+It doesn't support Windows (only Linux and Mac), but there are third party clients for Windows
+([encfsmp](http://encfsmp.sourceforge.net/), [encfs4win](http://members.ferrara.linux.it/freddy77/encfs.html)).
+The way it works is very similar to gocryptfs and it exists for a much longer time already.
+It offers you a virtual filesystem, encryption is in the background, and it encrypts files individually.
+Feel free to read the <Link href="#gocryptfs"><a>gocryptfs</a></Link> section above for more information,
+the advantages and disadvantages of this approach also apply to EncFS, namely it works well with cloud synchronization,
+doesn't interrupt your workflows, but only protects file contents and does not encrypt or prevents attackers from modifying
+file sizes and directory structure.
+
+</Col>
+</Row>
+
+Also note that the setting whether your client should prevent attackers from modifying
+your files is stored with the encrypted data in the cloud by default and an attacker can simply switch it off for you.
+So if you want to rely on this feature, make sure you store the config file locally.
 
 A probably even larger issue with EncFS is a [security audit](https://defuse.ca/audits/encfs.htm) from 2014 that
 attests EncFS to deviate from established security standards and also found some vulnerabilities in the current EncFS implementation.
@@ -164,13 +203,6 @@ The developers say they're working on a 2.0 version of EncFS which should fix mo
 Among other vulnerabilities, the security audit found one that is especially a problem with cloud storage.
 EncFS is not secure when an attacker gets multiple versions of the same encrypted file at different times.
 So if you upload your files to your Dropbox and then modify them, they are not securely encrypted anymore.
-
-EncFS optionally offers an integrity implementation (i.e. not only tries to keep hackers from reading, but also from modifying your files),
-but the implementation doesn't follow any standards and contains some flaws (see the [security audit](https://defuse.ca/audits/encfs.htm) mentioned above).
-Furthermore, the setting of whether you use this integrity feature or not is stored in the cloud as well.
-A hacker who can modify your files could simply switch the integrity check to off and you would never notice.
-Even if you go to some lengths to avoid this and store the configuration file locally where it can't be modified by a hacker,
-EncFS only offers integrity on a per-file level. It does not prevent hackers from adding or deleting files and directories.
 
 So the current version of EncFS can't really be recommended for any application.
 EncFS 2.0 might be interesting again when and if it is released.
@@ -222,7 +254,7 @@ Like all other solutions described here, it offers a virtual filesystem and you 
 encryption that is happening in the background.
 While it can also be used for local encryption as an alternative to the other tools listed here,
 it was built specifically to be used together with Dropbox or other cloud storage providers.
-Right now, it only works on Linux, but versions for Mac and Windows are on the way.
+It supports Linux and Mac, and since version 0.10 has experimental Windows support.
 
 </Col>
 <Col md="12">
@@ -230,20 +262,17 @@ Right now, it only works on Linux, but versions for Mac and Windows are on the w
 CryFS follows established security standards and is the only tool in this list that works well together with Dropbox
 and is secure. As opposed to VeraCrypt, it keeps its data in small encrypted blocks and changing a small file
 results in only a small amount of data to be re-uploaded.
-As opposed to EncFS and eCryptfs, it doesn't only encrypt your file contents, but also file sizes, file metadata and
+As opposed to gocryptfs, EncFS and eCryptfs, it doesn't only encrypt your file contents, but also file sizes, file metadata and
 directory structure.
 More information on how this is achieved can be found <Link href="/howitworks"><a>here</a></Link>.
 The security of CryFS has been proven in a [master's thesis](/cryfs_mathesis.pdf) in 2015.
 As far as we know, CryFS is the only solution in this list for which this has been done.
 
-CryFS offers confidentiality of your data, but as of today only a basic level of integrity.
-It prevents hackers from introducing new content into your files or adding new files or deleting files,
-but it doesn't prevent attackers from rolling back your files or directories to a previous valid version.
-This is planned for future versions.
-Nevertheless, even the current implementation offers better integrity than the other tools listed here.
+CryFS offers confidentiality and, since version 0.10, also integrity of your data. This means, attackers cannot read your files, file sizes
+or directory structure, and also prevents attackers from modifying any of that.
 The main drawback of CryFS is that it is relatively new.
 The current version is not considered stable yet by the developers and if you decide to use it, regular backups are strongly recommended.
-However, there are no reported cases of problems or data losses so far.
+It has gotten quite a bit more stable recently though and is successfully used in a lot of settings already.
 
 </Col>
 </Row>
@@ -266,6 +295,7 @@ So if you don't need Windows or Mac support today, you can give it a try.
 <ComparisonTable>
     <ComparisonTableHead>
         <ComparisonTableHeader>CryFS</ComparisonTableHeader>
+        <ComparisonTableHeader>gocryptfs</ComparisonTableHeader>
         <ComparisonTableHeader>EncFS</ComparisonTableHeader>
         <ComparisonTableHeader>eCryptfs</ComparisonTableHeader>
         <ComparisonTableHeader>VeraCrypt</ComparisonTableHeader>
@@ -276,14 +306,17 @@ So if you don't need Windows or Mac support today, you can give it a try.
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
         </ComparisonTableRow>
         <ComparisonTableRow title="Performance">
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
         </ComparisonTableRow>
         <ComparisonTableRow title="Works together with Dropbox">
+            <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="no" />
@@ -293,9 +326,11 @@ So if you don't need Windows or Mac support today, you can give it a try.
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="no" />
         </ComparisonTableRow>
         <ComparisonTableRow title="No known security flaws">
+            <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="no" />
             <ComparisonTableCell type="yes" />
@@ -306,15 +341,18 @@ So if you don't need Windows or Mac support today, you can give it a try.
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
         </ComparisonTableRow>
         <ComparisonTableRow title="Encrypts file metadata and file sizes">
             <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="no" />
             <ComparisonTableCell type="no" />
             <ComparisonTableCell type="no" />
             <ComparisonTableCell type="yes" />
         </ComparisonTableRow>
         <ComparisonTableRow title="Encrypts directory structure">
             <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="no" />
             <ComparisonTableCell type="no" />
             <ComparisonTableCell type="no" />
             <ComparisonTableCell type="yes" />
@@ -324,10 +362,12 @@ So if you don't need Windows or Mac support today, you can give it a try.
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
         </ComparisonTableRow>
         <ComparisonTableRow title="Keeps integrity of data">
             <ComparisonTableCell type="yes" footnote="b)" />
             <ComparisonTableCell type="half" footnote="c)" />
+            <ComparisonTableCell type="half" footnote="d)" />
             <ComparisonTableCell type="no" />
             <ComparisonTableCell type="no" />
         </ComparisonTableRow>
@@ -336,16 +376,19 @@ So if you don't need Windows or Mac support today, you can give it a try.
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" />
         </ComparisonTableRow>
         <ComparisonTableRow title="Available for Mac OS X">
+            <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="no" />
             <ComparisonTableCell type="yes" />
         </ComparisonTableRow>
         <ComparisonTableRow title="Available for Windows">
-            <ComparisonTableCell type="half" footnote="d)" />
             <ComparisonTableCell type="half" footnote="e)" />
+            <ComparisonTableCell type="half" footnote="f)" />
+            <ComparisonTableCell type="half" footnote="f)" />
             <ComparisonTableCell type="no" />
             <ComparisonTableCell type="yes" />
         </ComparisonTableRow>
@@ -356,9 +399,10 @@ So if you don't need Windows or Mac support today, you can give it a try.
 <ol className={css(style.footnotes)}>
     <li className={css(style.footnotesLi)}>VeraCrypt causes unresolvable conflicts when modifying the filesystem on two machines without full synchronization inbetween.</li>
     <li className={css(style.footnotesLi)}>CryFS supports this starting with version 0.10.</li>
+    <li className={css(style.footnotesLi)}>Gocryptfs only protects file contents. It does not protect against adding or deleting files or directories.</li>
     <li className={css(style.footnotesLi)}>EncFS only protects file contents. It does not protect against adding or deleting files or directories. Also, the current implementation is flawed because a hacker can simply disable the integrity check.</li>
     <li className={css(style.footnotesLi)}>There is experimental Windows support starting with CryFS version 0.10.</li>
-    <li className={css(style.footnotesLi)}>There is a third-party experimental version of EncFS for Windows.</li>
+    <li className={css(style.footnotesLi)}>There is a third-party experimental version of gocryptfs and EncFS for Windows.</li>
 </ol>
 
 </Container>
