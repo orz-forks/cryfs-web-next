@@ -274,6 +274,10 @@ The main drawback of CryFS is that it is relatively new.
 The current version is not considered stable yet by the developers and if you decide to use it, regular backups are strongly recommended.
 It has gotten quite a bit more stable recently though and is successfully used in a lot of settings already.
 
+The increase in security when compared to other file systems comes at a performance cost.
+CryFS is fast enough to be used in practice.
+I'm getting a read speed to 170MB/s and a write speed of 80MB/s on my SSD machine, but other file systems are even faster.
+
 </Col>
 </Row>
 
@@ -283,14 +287,14 @@ It has gotten quite a bit more stable recently though and is successfully used i
 <Container>
 
 ## Summary
-There are many tools available, but all of them have their disadvantages.
-Most have not been designed to be used in the cloud, and the one that has been is currently only available for Linux.
+There are many tools available, but most have not been designed to be used in the cloud.
 
-EncFS doesn't encrypt directory structure and its current version has severe security vulnerabilities.
+Gocrypfs, EncFS and eCryptfs don't encrypt directory structure. EncFS has severe security vulnerabilities in its current version.
 eCryptfs might cause crashes or undefined behavior if there is more than one device connected to your Dropbox.
 VeraCrypt works, as long as your container file is small, i.e. you don't mind synchronizing the whole container file on each change, and if you always let it finish synchronization before modifying the files on another computer.
-CryFS solves all of these issues. It is a very new project and currently only available for Linux, but versions for other operating systems are on the way.
-So if you don't need Windows or Mac support today, you can give it a try.
+CryFS solves all of these issues, but because of the increased security it is a bit slower.
+It is also a very new project and currently only available for Linux and Mac, but has experimental Windows support in the newest version.
+So if you don't need Windows support today, you can give it a try.
 
 <ComparisonTable>
     <ComparisonTableHead>
@@ -309,7 +313,7 @@ So if you don't need Windows or Mac support today, you can give it a try.
             <ComparisonTableCell type="yes" />
         </ComparisonTableRow>
         <ComparisonTableRow title="Performance">
-            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="yes" footnote="a)" />
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
@@ -320,7 +324,7 @@ So if you don't need Windows or Mac support today, you can give it a try.
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="no" />
-            <ComparisonTableCell type="half" footnote="a)" />
+            <ComparisonTableCell type="half" footnote="b)" />
         </ComparisonTableRow>
         <ComparisonTableRow title="Small changes cause only small amount of data to be re-uploaded">
             <ComparisonTableCell type="yes" />
@@ -357,17 +361,24 @@ So if you don't need Windows or Mac support today, you can give it a try.
             <ComparisonTableCell type="no" />
             <ComparisonTableCell type="yes" />
         </ComparisonTableRow>
-        <ComparisonTableRow title="Keeps confidentiality of data">
-            <ComparisonTableCell type="yes" />
-            <ComparisonTableCell type="yes" />
-            <ComparisonTableCell type="yes" />
-            <ComparisonTableCell type="yes" />
-            <ComparisonTableCell type="yes" />
-        </ComparisonTableRow>
-        <ComparisonTableRow title="Keeps integrity of data">
-            <ComparisonTableCell type="yes" footnote="b)" />
-            <ComparisonTableCell type="half" footnote="c)" />
+        <ComparisonTableRow title="Protects file contents from malicious modifications">
+            <ComparisonTableCell type="yes" footnote="c)" />
             <ComparisonTableCell type="half" footnote="d)" />
+            <ComparisonTableCell type="half" footnote="e)" />
+            <ComparisonTableCell type="no" />
+            <ComparisonTableCell type="no" />
+        </ComparisonTableRow>
+        <ComparisonTableRow title="Protects file metadata and file sizes from malicious modifications">
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="no" />
+            <ComparisonTableCell type="no" />
+            <ComparisonTableCell type="no" />
+            <ComparisonTableCell type="no" />
+        </ComparisonTableRow>
+        <ComparisonTableRow title="Protects directory structure from malicious modifications">
+            <ComparisonTableCell type="yes" />
+            <ComparisonTableCell type="no" />
+            <ComparisonTableCell type="no" />
             <ComparisonTableCell type="no" />
             <ComparisonTableCell type="no" />
         </ComparisonTableRow>
@@ -386,9 +397,9 @@ So if you don't need Windows or Mac support today, you can give it a try.
             <ComparisonTableCell type="yes" />
         </ComparisonTableRow>
         <ComparisonTableRow title="Available for Windows">
-            <ComparisonTableCell type="half" footnote="e)" />
             <ComparisonTableCell type="half" footnote="f)" />
-            <ComparisonTableCell type="half" footnote="f)" />
+            <ComparisonTableCell type="half" footnote="g)" />
+            <ComparisonTableCell type="half" footnote="g)" />
             <ComparisonTableCell type="no" />
             <ComparisonTableCell type="yes" />
         </ComparisonTableRow>
@@ -397,10 +408,11 @@ So if you don't need Windows or Mac support today, you can give it a try.
 
 <strong>Footnotes:</strong>
 <ol className={css(style.footnotes)}>
+    <li className={css(style.footnotesLi)}>CryFS is fast enough to be used in practice, but some of the other file systems in the list are faster.</li>
     <li className={css(style.footnotesLi)}>VeraCrypt causes unresolvable conflicts when modifying the filesystem on two machines without full synchronization inbetween.</li>
     <li className={css(style.footnotesLi)}>CryFS supports this starting with version 0.10.</li>
-    <li className={css(style.footnotesLi)}>Gocryptfs only protects file contents. It does not protect against adding or deleting files or directories.</li>
-    <li className={css(style.footnotesLi)}>EncFS only protects file contents. It does not protect against adding or deleting files or directories. Also, the current implementation is flawed because a hacker can simply disable the integrity check.</li>
+    <li className={css(style.footnotesLi)}>Gocryptfs only makes sure that the data you're reading was at some point written by you. It does not protect against attackers who replace the content of a file with the content of a different file, or with an earlier version of the same or a different file.</li>
+    <li className={css(style.footnotesLi)}>Like in (c), EncFS also only makes sure that the data you're reading was at some point written by you. Furthermore, the current implementation is flawed because a hacker can simply disable the integrity check.</li>
     <li className={css(style.footnotesLi)}>There is experimental Windows support starting with CryFS version 0.10.</li>
     <li className={css(style.footnotesLi)}>There is a third-party experimental version of gocryptfs and EncFS for Windows.</li>
 </ol>
