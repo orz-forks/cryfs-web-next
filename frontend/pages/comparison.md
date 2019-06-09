@@ -326,7 +326,7 @@ So if you don't need Windows or Mac support today, you can give it a try.
             <ComparisonTableCell type="yes" />
         </ComparisonTableRow>
         <ComparisonTableRow title="Keeps integrity of data">
-            <ComparisonTableCell type="half" footnote="b)" />
+            <ComparisonTableCell type="yes" footnote="b)" />
             <ComparisonTableCell type="half" footnote="c)" />
             <ComparisonTableCell type="no" />
             <ComparisonTableCell type="no" />
@@ -338,21 +338,15 @@ So if you don't need Windows or Mac support today, you can give it a try.
             <ComparisonTableCell type="yes" />
         </ComparisonTableRow>
         <ComparisonTableRow title="Available for Mac OS X">
-            <ComparisonTableCell type="half" footnote="d)" />
+            <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="no" />
             <ComparisonTableCell type="yes" />
         </ComparisonTableRow>
         <ComparisonTableRow title="Available for Windows">
-            <ComparisonTableCell type="no" />
+            <ComparisonTableCell type="half" footnote="d)" />
             <ComparisonTableCell type="half" footnote="e)" />
             <ComparisonTableCell type="no" />
-            <ComparisonTableCell type="yes" />
-        </ComparisonTableRow>
-        <ComparisonTableRow title="Already exists for some time">
-            <ComparisonTableCell type="no" />
-            <ComparisonTableCell type="yes" />
-            <ComparisonTableCell type="yes" />
             <ComparisonTableCell type="yes" />
         </ComparisonTableRow>
     </ComparisonTableBody>
@@ -361,9 +355,9 @@ So if you don't need Windows or Mac support today, you can give it a try.
 <strong>Footnotes:</strong>
 <ol className={css(style.footnotes)}>
     <li className={css(style.footnotesLi)}>VeraCrypt causes unresolvable conflicts when modifying the filesystem on two machines without full synchronization inbetween.</li>
-    <li className={css(style.footnotesLi)}>CryFS protects against a hacker introducing new changes, i.e. adding, deleting or modifying a file or directory, but does not protect against rolling back files or directories to a previous version. This is planned for future versions.</li>
-    <li className={css(style.footnotesLi)}>EncFS only protects file contents. It does not protect against adding or deleting files or directories. The current implementation is flawed because a hacker can simply disable the integrity check.</li>
-    <li className={css(style.footnotesLi)}>CryFS should work on Mac OS X if you compile it yourself, but there are no distribution packages offered.</li>
+    <li className={css(style.footnotesLi)}>CryFS supports this starting with version 0.10.</li>
+    <li className={css(style.footnotesLi)}>EncFS only protects file contents. It does not protect against adding or deleting files or directories. Also, the current implementation is flawed because a hacker can simply disable the integrity check.</li>
+    <li className={css(style.footnotesLi)}>There is experimental Windows support starting with CryFS version 0.10.</li>
     <li className={css(style.footnotesLi)}>There is a third-party experimental version of EncFS for Windows.</li>
 </ol>
 
