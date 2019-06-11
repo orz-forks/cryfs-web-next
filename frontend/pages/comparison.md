@@ -164,7 +164,7 @@ but also integrity, i.e. against adversaries modifying your files without you no
 The same restriction mentioned for confidentiality also applies for integrity though. It only ensures that the file contents you're reading were at some point written by you.
 Attackers can change directory structure, add or delete files or folders, re-add files deleted earlier by you, replace files with earlier versions of themselves
 or replace their content with the content of other files, or earlier versions of those other files, and you wouldn't necessarily notice any of that.
-The [alternatives](https://www.cryfs.org) mentioned above do also protect against these kinds of attack.
+The [alternatives](https://www.cryfs.org) mentioned above do also protect against these kinds of attacks.
 
 
 </Container>
