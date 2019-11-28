@@ -109,10 +109,10 @@ and in a [scientific paper published at DBSec 2017](http://dx.doi.org/10.1007/97
 The works also contain a detailed description of the inner workings of CryFS.
 
 The current version meets all security goals regarding confidentiality of file contents, size, metadata and directory structure.
-The integrity goals mentioned in the thesis are not fully implemented yet.
-The current version protects the encrypted blocks from being modified by an attacker, since it uses an authenticated encryption scheme like <var>aes-256-gcm</var>.
-However, it doesn't prevent an attacker yet from rolling back the filesystem by replacing blocks with an earlier valid version of the same block.
-This issue will be addressed in future versions.
+The integrity goals mentioned in the thesis are also implemented as of version 0.10.0.
+The 0.9.x versions protect the encrypted blocks from being modified by an attacker,
+since they use an authenticated encryption scheme like <var>aes-256-gcm</var>,
+but they don't prevent an attacker from rolling back the filesystem by replacing blocks with an earlier valid version of the same block yet.
 
 </Container>
 </section>
