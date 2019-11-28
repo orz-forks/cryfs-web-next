@@ -49,26 +49,33 @@ class ContactSection extends React.Component {
         await logAnalyticsEvent('contact_form', 'click')
 
         try {
-            const response = await fetch('https://backend.cryfs.org/contact/send', {
-                method: 'POST',
-                header: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    email: this.state.email,
-                    message: this.state.message,
-                    token: 'fd0kAn1zns',
-                }),
-            })
-
-            if (response.ok) {
-                await logAnalyticsEvent('contact_form', 'success')
-                this.setState({
-                    notification: 'success',
-                })
-            } else {
+            if (this.state.message == '') {
                 await logAnalyticsEvent('contact_form', 'error')
                 this.setState({
-                    notification: 'error',
+                    notification: 'error:empty',
                 })
+            } else {
+                const response = await fetch('https://backend.cryfs.org/contact/send', {
+                    method: 'POST',
+                    header: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        email: this.state.email,
+                        message: this.state.message,
+                        token: 'fd0kAn1zns',
+                    }),
+                })
+
+                if (response.ok) {
+                    await logAnalyticsEvent('contact_form', 'success')
+                    this.setState({
+                        notification: 'success',
+                    })
+                } else {
+                    await logAnalyticsEvent('contact_form', 'error')
+                    this.setState({
+                        notification: 'error',
+                    })
+                }
             }
         } catch (err) {
             this.setState({
@@ -125,6 +132,10 @@ class ContactSection extends React.Component {
                                     <Collapse isOpen={this.state.notification == 'success'}
                                               className={`lead ${css(formStyle.notification_success)}`}>
                                         Thank you.
+                                    </Collapse>
+                                    <Collapse isOpen={this.state.notification == 'error:empty'}
+                                              className={`lead ${css(formStyle.notification_error)}`}>
+                                        Please enter a message to send.
                                     </Collapse>
                                     <Collapse isOpen={this.state.notification == 'error'}
                                               className={`lead ${css(formStyle.notification_error)}`}>
