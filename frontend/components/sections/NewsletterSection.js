@@ -61,7 +61,7 @@ class NewsletterSection extends React.Component {
                 header: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     email: this.state.email,
-                    token: 'iSZ9_2a5PT-U',
+                    token: 'fd0kAn1zns',
                 }),
             })
 

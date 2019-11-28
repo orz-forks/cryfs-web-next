@@ -55,7 +55,7 @@ class ContactSection extends React.Component {
                 body: JSON.stringify({
                     email: this.state.email,
                     message: this.state.message,
-                    token: 'iSZ9_2a5PT-U',
+                    token: 'fd0kAn1zns',
                 }),
             })
 
