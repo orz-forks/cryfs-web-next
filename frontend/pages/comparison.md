@@ -412,7 +412,7 @@ So if you don't need Windows support today, you can give it a try.
     <li className={css(style.footnotesLi)}>VeraCrypt causes unresolvable conflicts when modifying the filesystem on two machines without full synchronization inbetween.</li>
     <li className={css(style.footnotesLi)}>CryFS supports this starting with version 0.10.</li>
     <li className={css(style.footnotesLi)}>Gocryptfs only makes sure that the data you're reading was at some point written by you. It does not protect against attackers who replace the content of a file with the content of a different file, or with an earlier version of the same or a different file.</li>
-    <li className={css(style.footnotesLi)}>Like in (c), EncFS also only makes sure that the data you're reading was at some point written by you. Furthermore, the current implementation is flawed because a hacker can simply disable the integrity check.</li>
+    <li className={css(style.footnotesLi)}>Like in (d), EncFS also only makes sure that the data you're reading was at some point written by you. Furthermore, the current implementation is flawed because a hacker can simply disable the integrity check.</li>
     <li className={css(style.footnotesLi)}>There is experimental Windows support starting with CryFS version 0.10.</li>
     <li className={css(style.footnotesLi)}>There is a third-party experimental version of gocryptfs and EncFS for Windows.</li>
 </ol>
