@@ -106,7 +106,7 @@ export default () => (
                         <p className={css(mdStyle.title_text_p)}>{teaser_paragraph1}</p>
                         <p className={css(mdStyle.title_text_p)}>
                             <Link href="/#download">
-                                <Button color="primary" size="lg" onClick={onDownloadButtonClick}>Download(beta)</Button>
+                                <Button color="primary" size="lg" onClick={onDownloadButtonClick}>Download</Button>
                             </Link>
                             <Link href="/tutorial">
                                 <Button color="info" size="lg" className={css(tutorialBtnStyle.button)} onClick={onTutorialButtonClick}>Tutorial</Button>
