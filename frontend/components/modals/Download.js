@@ -211,7 +211,7 @@ const tabs = () => [
 ]
 
 const DownloadModal = () => (
-    <RouteHashBasedModal hash="#download" header={`Download CryFS ${VersionNumber} (beta)`} showCloseButtonInFooter labelledBy="downloadModalTitle" size="lg">
+    <RouteHashBasedModal hash="#download" header={`Download CryFS ${VersionNumber}`} showCloseButtonInFooter labelledBy="downloadModalTitle" size="lg">
         <ModalBody>
             <Container fluid>
                 <Row>
