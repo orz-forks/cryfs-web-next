@@ -4,6 +4,7 @@ import { GoogleAnalyticsRoot, logGoogleAnalyticsPageview, logGoogleAnalyticsEven
 import { logFacebookPageview, logFacebookEvent } from './Facebook'
 import {RoutingListener} from "./RoutingListener";
 import {withRouter} from "next/dist/client/router";
+import React from 'react';
 
 // TODO Log copying the download instruction command (and check we didn't miss any other events from the old Ruby implementation)
 

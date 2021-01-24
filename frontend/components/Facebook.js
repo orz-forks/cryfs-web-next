@@ -1,5 +1,6 @@
 "use strict";
 
+import React from 'react';
 import ReactDOM from 'react-dom'
 import defer from './Defer'
 import { promiseWithTimeout } from './Timeout'

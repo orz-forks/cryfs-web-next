@@ -4,6 +4,7 @@ import { withRouter} from "next/dist/client/router";
 import Url from "url-parse";
 import {Modal, ModalHeader, ModalFooter, Button} from "reactstrap";
 import { RoutingListener } from '../RoutingListener'
+import React from 'react';
 
 class RouteHashBasedModal extends React.Component {
     constructor(props) {

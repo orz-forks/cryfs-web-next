@@ -3,6 +3,7 @@
 import {Button, Collapse} from "reactstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
 
 // A button that has a onClick handler attached which potentially takes a bit more time.
 // The button will disable itself and show a progress spinner while running the onClick handler.

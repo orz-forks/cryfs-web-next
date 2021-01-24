@@ -2,7 +2,7 @@
 
 import Head from 'next/head'
 import '../assets/styles/bootstrap.scss'
-import * as React from "react";
+import React from 'react';
 import Link from 'next/link'
 import {
     Container,

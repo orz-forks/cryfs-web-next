@@ -1,6 +1,5 @@
 "use strict";
 
-import React from 'react'
 import { StyleSheet, css } from 'aphrodite/no-important'
 
 const style = StyleSheet.create({

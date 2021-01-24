@@ -7,6 +7,7 @@ import {faAngleDoubleRight} from "@fortawesome/free-solid-svg-icons";
 import fetch from 'unfetch'
 import AsyncButton from '../AsyncButton'
 import {logAnalyticsEvent} from '../Analytics'
+import React from 'react';
 
 const formStyle = StyleSheet.create({
     notificationArea: {

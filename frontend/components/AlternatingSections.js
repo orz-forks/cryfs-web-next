@@ -1,7 +1,7 @@
 "use strict";
 
 import {css, StyleSheet} from "aphrodite"
-import React from 'react'
+import React from 'react';
 
 const styles = [
     StyleSheet.create({
