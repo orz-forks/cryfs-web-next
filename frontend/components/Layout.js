@@ -1,7 +1,6 @@
 "use strict";
 
 import Head from 'next/head'
-import '../assets/styles/bootstrap.scss'
 import React from 'react';
 import Link from 'next/link'
 import {

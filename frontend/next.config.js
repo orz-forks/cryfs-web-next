@@ -2,7 +2,6 @@
 
 const {withPlugins} = require('next-compose-plugins');
 const optimizedImages = require('next-optimized-images');
-const withSass = require('@zeit/next-sass')
 const withMDX = require('@next/mdx')
 const fs = require('fs');
 const { join } = require('path');
@@ -49,7 +48,6 @@ const config = {
 
 module.exports = withPlugins([
     [optimizedImages, {/* config */}],
-    [withSass, {/* config */}],
     [withMDX({
         extension: /\.mdx?$/
     }), {/* config */}],
