@@ -10,7 +10,7 @@ import BulletsSection from '../components/sections/BulletsSection'
 import ContactSection from '../components/sections/ContactSection'
 import MetaTags from "../components/MetaTags";
 
-export default () => (
+const Index = () => (
     <Layout>
         {/* TODO translate tags in here*/}
         <MetaTags
@@ -30,4 +30,6 @@ export default () => (
             <section><ContactSection /></section>
         </AlternatingSections>
     </Layout>
-)
+);
+
+export default Index;

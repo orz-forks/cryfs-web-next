@@ -3,7 +3,7 @@
 import Head from "next/head"
 import Logo from "../assets/images/logo.png"
 
-export default (props) => (
+const MetaTags = (props) => (
     <Head>
         <meta property="og:title" content={props.title} />
         <meta property="og:url" content={props.url} />
@@ -17,3 +17,5 @@ export default (props) => (
         <title>{props.title}</title>
     </Head>
 )
+
+export default MetaTags;

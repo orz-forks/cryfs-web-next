@@ -42,7 +42,7 @@ const BulletPoint = (props) => (
     </Col>
 )
 
-export default () => (
+const BulletsSection = () => (
     <Container>
         <Row>
             {/*TODO Translate*/}
@@ -58,3 +58,5 @@ export default () => (
         </Row>
     </Container>
 )
+
+export default BulletsSection;

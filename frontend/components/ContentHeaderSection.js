@@ -12,7 +12,7 @@ const style = StyleSheet.create({
     },
 })
 
-export default (props) => (
+const ContentHeaderSection = (props) => (
     <section {...props}>
         <Container>
             <h1 className={css(style.title)}>{props.title}</h1>
@@ -23,3 +23,5 @@ export default (props) => (
         </Container>
     </section>
 )
+
+export default ContentHeaderSection;
