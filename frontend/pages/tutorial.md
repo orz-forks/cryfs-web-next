@@ -166,6 +166,14 @@ You might have to wait some seconds for Dropbox to finish synchronization.
     <ConsoleOutput>[output contains basedir]</ConsoleOutput>
 </Console>
 
+<Alert color="warning">
+<b>Warning!</b>&nbsp;
+Never access the file system from two devices at the same time. This can corrupt your file system.
+When switching devices, always make sure to stop CryFS on the first device, let Dropbox finish
+synchronization, and then start CryFS on the second device. There are some ideas on how future versions
+of CryFS could allow for concurrent access, but in the current version this is not safe.
+</Alert>
+
 Then, we start CryFS.
 <Console>
     <ConsoleCommand>cryfs dropbox/basedir mountdir</ConsoleCommand>
