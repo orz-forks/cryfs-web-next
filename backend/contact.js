@@ -4,7 +4,7 @@ import {email_myself} from './email'
 import {LambdaFunction} from './lambda_function'
 
 const do_send = async (from_email, message) => {
-	let subject = "CryFS Contact Form"
+	let subject = "CryFS Contact Form (test) "
 	if (from_email === '') {
 		subject += " (from unknown)"
 	} else {
