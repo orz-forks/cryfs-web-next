@@ -14,7 +14,7 @@ module.exports = {
         // Turn off size warnings for entry points
         hints: false
     },
-    externals: [nodeExternals()],
+    //externals: [nodeExternals()],
     devtool: 'nosources-source-map',
     module: {
         rules: [
