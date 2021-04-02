@@ -7,5 +7,5 @@
  */
 
 module.exports = {
-    VersionNumber: "0.10.2"
+    VersionNumber: "0.10.3"
 }
