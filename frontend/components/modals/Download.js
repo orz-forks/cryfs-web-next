@@ -175,10 +175,10 @@ const tabs = () => [
                 </p>
                 <Console>
                     <ConsoleCommand className={css(style.easyinstallCommand)}>
-                        sudo apt install cryfs
+                        brew install --cask osxfuse
                     </ConsoleCommand>
                     <ConsoleCommand className={css(style.easyinstallCommand)}>
-                        brew install cryfs
+                        brew install cryfs/tap/cryfs
                     </ConsoleCommand>
                 </Console>
                 <h3>Windows</h3>
