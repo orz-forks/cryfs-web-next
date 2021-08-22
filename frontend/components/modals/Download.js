@@ -191,7 +191,7 @@ const tabs = () => [
                         <span>(use newest Dokan_x64.msi or Dokan_x86.msi) and</span>
                     </li>
                     <li>
-                        <a href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">Microsoft Visual C++ Redistributable for Visual Studio 2017</a>
+                        <a href="https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads">Microsoft Visual C++ Redistributable for Visual Studio 2019</a>
                     </li>
                 </ul>
                 <p>And then install CryFS:</p>
