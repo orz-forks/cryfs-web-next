@@ -175,7 +175,7 @@ const tabs = () => [
                 </p>
                 <Console>
                     <ConsoleCommand className={css(style.easyinstallCommand)}>
-                        brew install --cask osxfuse
+                        brew install --cask macfuse
                     </ConsoleCommand>
                     <ConsoleCommand className={css(style.easyinstallCommand)}>
                         brew install cryfs/tap/cryfs
