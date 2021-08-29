@@ -14,7 +14,7 @@ class CachedValue {
                 this.value = await this.creator()
             }
             return this.value
-        }
+        })
     }
 }
 
