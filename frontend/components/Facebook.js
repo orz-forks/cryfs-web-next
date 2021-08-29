@@ -15,7 +15,7 @@ export const FacebookAPI = async () => {
     return await promiseWithTimeout(api.promise, 10000)
 }
 
-export const logFacebookEvent= async (event) => {
+export const logFacebookEvent = async (event) => {
     const fb = await FacebookAPI()
     fb.AppEvents.logEvent(event)
 }
@@ -47,10 +47,10 @@ const loadFacebookSdk = () => {
     const initSdk = () => {
         window.fbAsyncInit = () => {
             FB.init({
-                appId            : FacebookAppId,
-                xfbml            : false,
-                autoLogAppEvents : true,
-                version          : 'v2.10', // From 2.11 on, the edge.create and edge.remove events we use for analytics don't work anymore, see https://developers.facebook.com/blog/post/2017/11/07/changes-developer-offerings/
+                appId: FacebookAppId,
+                xfbml: false,
+                autoLogAppEvents: true,
+                version: 'v2.10', // From 2.11 on, the edge.create and edge.remove events we use for analytics don't work anymore, see https://developers.facebook.com/blog/post/2017/11/07/changes-developer-offerings/
             })
             api.resolve(FB)
             setupAnalyticsTracking(FB)
@@ -83,7 +83,7 @@ export class FacebookRoot extends React.Component {
     }
 
     render = () => (
-        <div id="fb-root"/>
+        <div id="fb-root" />
     )
 }
 
