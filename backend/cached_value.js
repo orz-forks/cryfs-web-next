@@ -9,14 +9,11 @@ class CachedValue {
     }
 
     get = async () => {
-        const release_mutex = await this.mutex.acquire()
-        try {
+        await this.mutex.runExclusive(async () => {
             if (typeof this.value == "undefined") {
                 this.value = await this.creator()
             }
             return this.value
-        } finally {
-            release_mutex()
         }
     }
 }

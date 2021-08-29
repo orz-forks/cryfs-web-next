@@ -7,20 +7,20 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@sendgrid/mail": "^7.4.2",
-    "async-mutex": "^0.2.6",
-    "aws-sdk": "^2.831.0",
-    "mailchimp-api-v3": "^1.14.0",
+    "@sendgrid/mail": "^7.4.6",
+    "async-mutex": "^0.3.1",
+    "aws-sdk": "^2.978.0",
+    "mailchimp-api-v3": "^1.15.0",
     "md5": "^2.3.0",
-    "serverless": "2.20.1"
+    "serverless": "2.56.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/preset-env": "^7.12.11",
+    "@babel/core": "^7.15.0",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/preset-env": "^7.15.0",
     "babel-loader": "^8.2.2",
-    "serverless-webpack": "^5.3.5",
-    "webpack": "^5.17.0",
-    "webpack-node-externals": "^2.5.2"
+    "serverless-webpack": "^5.5.2",
+    "webpack": "^5.51.1",
+    "webpack-node-externals": "^3.0.0"
   }
 }
