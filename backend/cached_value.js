@@ -9,7 +9,7 @@ class CachedValue {
     }
 
     get = async () => {
-        await this.mutex.runExclusive(async () => {
+        return await this.mutex.runExclusive(async () => {
             if (typeof this.value == "undefined") {
                 this.value = await this.creator()
             }
